@@ -13,5 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/{path?}', 'reactapp')
+Route::view('/{path?}', 'welcome')
     ->where('path', '.*');
