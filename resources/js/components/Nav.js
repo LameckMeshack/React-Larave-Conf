@@ -94,6 +94,38 @@ const Nav = () => {
                         Add Event
                     </NavLink>
                 </li>
+                <li onClick={toggleSubmenu} className="sub__menus__arrows">
+                    <NavLink
+                        className={({ isActive }) => (isActive ? "active" : "")}
+                        to="/user"
+                    >
+                        Add Role and Dept <FiChevronDown />{" "}
+                    </NavLink>
+                    <ul className={boxClassSubMenu.join(" ")}>
+                        <li>
+                            <NavLink
+                                onClick={toggleClass}
+                                className={({ isActive }) =>
+                                    isActive ? "active" : ""
+                                }
+                                to="/admin/department"
+                            >
+                                Add Department
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                onClick={toggleClass}
+                                className={({ isActive }) =>
+                                    isActive ? "active" : ""
+                                }
+                                to="/admin/role"
+                            >
+                                Add Role
+                            </NavLink>
+                        </li>
+                    </ul>
+                </li>
 
                 <li>
                     <NavLink
