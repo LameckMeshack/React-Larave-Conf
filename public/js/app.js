@@ -8871,10 +8871,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/AddEvent.js":
-/*!*********************************************!*\
-  !*** ./resources/js/components/AddEvent.js ***!
-  \*********************************************/
+/***/ "./resources/js/components/AddEvent.jsx":
+/*!**********************************************!*\
+  !*** ./resources/js/components/AddEvent.jsx ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -9109,7 +9109,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
 /* harmony import */ var _Pages_Login__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Pages/Login */ "./resources/js/Pages/Login.jsx");
 /* harmony import */ var _Pages_Register__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Pages/Register */ "./resources/js/Pages/Register.jsx");
-/* harmony import */ var _AddEvent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./AddEvent */ "./resources/js/components/AddEvent.js");
+/* harmony import */ var _AddEvent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./AddEvent */ "./resources/js/components/AddEvent.jsx");
 /* harmony import */ var _Trial__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Trial */ "./resources/js/components/Trial.jsx");
 /* harmony import */ var _Nav__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Nav */ "./resources/js/components/Nav.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
