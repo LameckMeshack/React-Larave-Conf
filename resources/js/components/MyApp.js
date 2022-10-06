@@ -10,11 +10,15 @@ function MyApp() {
     //     setIsSignedIn(true);
     // };
     return (
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            {/* <Route
+        <>
+            <Nav />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/addevent" element={<AddEvent />} />
+                <Route path="/trial" element={<Trial />} />
+                {/* <Route
                 path="/about"
                 element={
                     <Protected isSignedIn={isSignedIn}>
@@ -22,7 +26,8 @@ function MyApp() {
                     </Protected>
                 }
             /> */}
-        </Routes>
+            </Routes>
+        </>
     );
 }
 export default MyApp;
@@ -30,6 +35,9 @@ export default MyApp;
 import { createRoot } from "react-dom/client";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import AddEvent from "./AddEvent";
+import Trial from "./Trial";
+import Nav from "./Nav";
 const container = document.getElementById("app");
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(
