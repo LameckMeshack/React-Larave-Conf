@@ -20,3 +20,17 @@ export const roleCreateReducer = (state = {}, action) => {
             return state;
     }
 };
+
+//rol
+export const roleListReducer = (state = { roles: [] }, action) => {
+    switch (action.type) {
+        case ROLE_LIST_REQUEST:
+            return { loading: true };
+        case ROLE_LIST_SUCCESS:
+            return { loading: false, roles: action.payload };
+        case ROLE_LIST_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
