@@ -8553,7 +8553,8 @@ function Login() {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
               type: "text",
               className: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500",
-              placeholder: "Liaison"
+              placeholder: "Liaison",
+              required: true
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -8569,7 +8570,8 @@ function Login() {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
               type: "password",
               className: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500",
-              placeholder: "Password"
+              placeholder: "Password",
+              required: true
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
@@ -8638,7 +8640,7 @@ function Register() {
               className: "w-20 mx-auto mb-5",
               src: "https://www.cytonn.com/assets/img/logos/cytonn_logo.svg"
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
               className: "flex -mx-3",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -8654,7 +8656,8 @@ function Register() {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
                     type: "text",
                     className: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500",
-                    placeholder: "Liaison"
+                    placeholder: "Liaison",
+                    required: true
                   })]
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -8670,7 +8673,8 @@ function Register() {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
                     type: "email",
                     className: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500",
-                    placeholder: "ccyton@gmail.com"
+                    placeholder: "ccyton@gmail.com",
+                    required: true
                   })]
                 })]
               })]
@@ -8689,7 +8693,8 @@ function Register() {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
                     type: "password",
                     className: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500",
-                    placeholder: "Liaison"
+                    placeholder: "Liaison",
+                    required: true
                   })]
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -8705,7 +8710,8 @@ function Register() {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
                     type: "password",
                     className: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500",
-                    placeholder: "confirm password"
+                    placeholder: "confirm password",
+                    required: true
                   })]
                 })]
               })]
@@ -8796,7 +8802,8 @@ function Register() {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                 className: "w-full px-3 mb-5",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-                  className: "block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold",
+                  className: "block w-full max-w-xs mx-auto bg-green-700 hover:bg-green-200 text-white hover:text-gray-700focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold" // className="w-full bg-green-700 hover:bg-green-200 text-white hover:text-gray-700 font-bold py-2 px-4 mb-6 rounded"
+                  ,
                   children: "REGISTER NOW"
                 })
               })
@@ -8947,11 +8954,91 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
 
 function AddEvent() {
+  var _jsx2;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    name: "",
+    venue: "",
+    owner: "2",
+    description: "",
+    startDate: "",
+    leadDate: "",
+    department: "",
+    category: "",
+    activities: "",
+    poster: null
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      eventDetails = _useState2[0],
+      setEventDetails = _useState2[1];
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    console.log(eventDetails);
+
+    if (eventDetails.name === "" || eventDetails.venue === "" || eventDetails.owner === "" || eventDetails.description === "" || eventDetails.startDate === "" || eventDetails.leadDate === "" || eventDetails.department === "" || eventDetails.category === "" || eventDetails.activities === "" || eventDetails.poster === null) {
+      alert("Please fill all the fields");
+    } else {
+      var formDate = new FormData();
+      formDate.append("name", eventDetails.name);
+      formDate.append("venue", eventDetails.venue);
+      formDate.append("owner", eventDetails.owner);
+      formDate.append("description", eventDetails.description);
+      formDate.append("startDate", eventDetails.startDate);
+      formDate.append("leadDate", eventDetails.leadDate);
+      formDate.append("department", eventDetails.department);
+      formDate.append("category", eventDetails.category);
+      formDate.append("activities", eventDetails.activities);
+      formDate.append("poster", eventDetails.poster);
+      resetForm();
+    }
+  }; //method that takes in an object and returns a empty object value
+  // const resetForm = (obj1) => {
+  //     let obj2 = {};
+  //     for (let key in obj1) {
+  //         obj2[key] = "";
+  //     }
+  // };
+
+
+  var resetForm = function resetForm() {
+    return setEventDetails({
+      name: "",
+      venue: "",
+      owner: "1",
+      description: "",
+      startDate: "",
+      leadDate: "",
+      activities: "",
+      department: "",
+      category: "",
+      poster: ""
+    });
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: "min-w-screen min-h-screen bg-green-700 flex items-center justify-center px-5 py-5",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
@@ -8972,7 +9059,7 @@ function AddEvent() {
               className: "w-20 mx-auto mb-5",
               src: "https://www.cytonn.com/assets/img/logos/cytonn_logo.svg"
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
               className: "flex -mx-3",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -8984,9 +9071,18 @@ function AddEvent() {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                   className: "flex",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                    className: "w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"
+                    className: "w-10 z-10 pl-1 text-red-800 text-center pointer-events-none flex items-center justify-center",
+                    children: "*"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
                     type: "text",
+                    required: true,
+                    name: "name",
+                    value: eventDetails.name,
+                    onChange: function onChange(e) {
+                      return setEventDetails(_objectSpread(_objectSpread({}, eventDetails), {}, {
+                        name: e.target.value
+                      }));
+                    },
                     className: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500",
                     placeholder: "Liaison"
                   })]
@@ -9000,11 +9096,20 @@ function AddEvent() {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                   className: "flex",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                    className: "w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"
+                    className: "w-10 z-10 pl-1 text-red-800 text-center pointer-events-none flex items-center justify-center",
+                    children: "*"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
                     type: "text",
+                    required: true,
+                    name: "venue",
+                    value: eventDetails.venue,
                     className: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500",
-                    placeholder: "chancery"
+                    placeholder: "chancery",
+                    onChange: function onChange(e) {
+                      return setEventDetails(_objectSpread(_objectSpread({}, eventDetails), {}, {
+                        venue: e.target.value
+                      }));
+                    }
                   })]
                 })]
               })]
@@ -9019,10 +9124,19 @@ function AddEvent() {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                   className: "flex",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                    className: "w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"
+                    className: "w-10 z-10 pl-1 text-red-800 text-center pointer-events-none flex items-center justify-center",
+                    children: "*"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
                     type: "date",
                     min: new Date().toISOString().split("T")[0],
+                    required: true,
+                    name: "startDate",
+                    value: eventDetails.startDate,
+                    onChange: function onChange(e) {
+                      setEventDetails(_objectSpread(_objectSpread({}, eventDetails), {}, {
+                        startDate: e.target.value
+                      }));
+                    },
                     className: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500",
                     placeholder: "Liaison"
                   })]
@@ -9036,15 +9150,21 @@ function AddEvent() {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                   className: "flex",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                    className: "w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                    className: "w-10 z-10 pl-1 text-red-800 text-center pointer-events-none flex items-center justify-center",
+                    children: "*"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", (_jsx2 = {
                     type: "date" // minimum date to be today
                     ,
                     min: new Date().toISOString().split("T")[0],
-                    max: "2017-04-30",
-                    className: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500",
-                    placeholder: "confirm password"
-                  })]
+                    required: true,
+                    name: "leadDate",
+                    value: eventDetails.leadDate,
+                    onChange: function onChange(e) {
+                      setEventDetails(_objectSpread(_objectSpread({}, eventDetails), {}, {
+                        leadDate: e.target.value
+                      }));
+                    }
+                  }, _defineProperty(_jsx2, "required", true), _defineProperty(_jsx2, "max", eventDetails.startDate), _defineProperty(_jsx2, "className", "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"), _defineProperty(_jsx2, "placeholder", "confirm password"), _jsx2))]
                 })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -9059,6 +9179,11 @@ function AddEvent() {
                   className: "relative",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
                     className: "block appearance-none w-full bg-white border border-gray-400 hover:border-indigo-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline",
+                    onChange: function onChange(e) {
+                      return setEventDetails(_objectSpread(_objectSpread({}, eventDetails), {}, {
+                        department: e.target.value
+                      }));
+                    },
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
                       className: "text-gray-700",
                       children: "Select Department"
@@ -9081,6 +9206,13 @@ function AddEvent() {
                   className: "relative",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
                     className: "block appearance-none w-full bg-white border border-gray-400 hover:border-indigo-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline",
+                    value: eventDetails.category,
+                    name: "category",
+                    onChange: function onChange(e) {
+                      return setEventDetails(_objectSpread(_objectSpread({}, eventDetails), {}, {
+                        category: e.target.value
+                      }));
+                    },
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
                       className: "text-gray-700",
                       children: "Select Category"
@@ -9105,15 +9237,61 @@ function AddEvent() {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                   className: "flex",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                    className: "w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"
+                    className: "w-10 z-10 pl-1 text-red-800 text-center pointer-events-none flex items-center justify-center",
+                    children: "*"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("textarea", {
                     type: "tel",
+                    required: true,
+                    name: "description",
+                    value: eventDetails.description,
+                    onChange: function onChange(e) {
+                      return setEventDetails(_objectSpread(_objectSpread({}, eventDetails), {}, {
+                        description: e.target.value
+                      }));
+                    },
                     className: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500",
                     placeholder: "Please enter the description of the project"
                   })]
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "w-1/2 px-3 mb-5",
+                className: "w-1/4 px-3 mb-5",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                  htmlFor: "Email",
+                  className: "text-xs font-semibold px-1",
+                  children: "Activities"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "relative",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+                    className: "block appearance-none w-full bg-white border border-gray-400 hover:border-indigo-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline",
+                    value: eventDetails.activities,
+                    name: "activities",
+                    onChange: function onChange(e) {
+                      return setEventDetails(_objectSpread(_objectSpread({}, eventDetails), {}, {
+                        activities: e.target.value
+                      }));
+                    },
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                      className: "text-gray-700",
+                      children: "Select Activity"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                      children: "Activity 1"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                      children: "Activity 2"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                      children: "Activity 3"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                      children: "Activity 4"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                      children: "Activity 5"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                      children: "Activity 6"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                      children: "Activity 7"
+                    })]
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "w-1/4 px-3 mb-5",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
                   htmlFor: "Email",
                   className: "text-xs font-semibold px-1",
@@ -9121,9 +9299,18 @@ function AddEvent() {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                   className: "flex",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                    className: "w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"
+                    className: "w-10 z-10 pl-1 text-red-800 text-center pointer-events-none flex items-center justify-center",
+                    children: "*"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                    type: "file" // className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                    type: "file",
+                    required: true,
+                    name: "poster" // value={eventDetails.poster}
+                    ,
+                    onChange: function onChange(e) {
+                      return setEventDetails(_objectSpread(_objectSpread({}, eventDetails), {}, {
+                        poster: e.target.files[0]
+                      }));
+                    } // className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                     ,
                     className: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 bg-white border-gray-200 outline-none focus:border-indigo-500"
                   })]
@@ -9134,7 +9321,8 @@ function AddEvent() {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                 className: "w-full px-3 mb-5",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-                  className: "block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold",
+                  className: "block w-full max-w-xs mx-auto bg-green-700 hover:bg-green-200 text-white hover:text-gray-700focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold",
+                  onClick: handleSubmit,
                   children: "ADD EVENT"
                 })
               })
