@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
 function AddEvent() {
+    const [eventDetails, setEventDetails] = useState({
+        name: "",
+        venue: "",
+        owner: "",
+        description: "",
+        startDate: "",
+        leadDate: "",
+        department: "",
+        category: "",
+        poster: null,
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(eventDetails);
+    };
+
     return (
         <div className="min-w-screen min-h-screen bg-green-700 flex items-center justify-center px-5 py-5">
             <div
@@ -31,6 +48,15 @@ function AddEvent() {
                                         <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"></div>
                                         <input
                                             type="text"
+                                            required
+                                            name="name"
+                                            value={eventDetails.name}
+                                            onChange={(e) =>
+                                                setEventDetails({
+                                                    ...eventDetails,
+                                                    name: e.target.value,
+                                                })
+                                            }
                                             className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                                             placeholder="Liaison"
                                         />
@@ -47,8 +73,17 @@ function AddEvent() {
                                         <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"></div>
                                         <input
                                             type="text"
+                                            required
+                                            name="venue"
+                                            value={eventDetails.venue}
                                             className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                                             placeholder="chancery"
+                                            onChange={(e) =>
+                                                setEventDetails({
+                                                    ...eventDetails,
+                                                    venue: e.target.value,
+                                                })
+                                            }
                                         />
                                     </div>
                                 </div>
@@ -70,6 +105,15 @@ function AddEvent() {
                                                     .toISOString()
                                                     .split("T")[0]
                                             }
+                                            required
+                                            name="startDate"
+                                            value={eventDetails.startDate}
+                                            onChange={(e) => {
+                                                setEventDetails({
+                                                    ...eventDetails,
+                                                    startDate: e.target.value,
+                                                });
+                                            }}
                                             className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                                             placeholder="Liaison"
                                         />
@@ -92,7 +136,17 @@ function AddEvent() {
                                                     .toISOString()
                                                     .split("T")[0]
                                             }
-                                            max="2017-04-30"
+                                            required
+                                            name="leadDate"
+                                            value={eventDetails.leadDate}
+                                            onChange={(e) => {
+                                                setEventDetails({
+                                                    ...eventDetails,
+                                                    leadDate: e.target.value,
+                                                });
+                                            }}
+                                            required
+                                            max={eventDetails.startDate}
                                             className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                                             placeholder="confirm password"
                                         />
@@ -108,7 +162,15 @@ function AddEvent() {
                                         Department
                                     </label>
                                     <div className="relative">
-                                        <select className="block appearance-none w-full bg-white border border-gray-400 hover:border-indigo-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                        <select
+                                            className="block appearance-none w-full bg-white border border-gray-400 hover:border-indigo-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                            onChange={(e) =>
+                                                setEventDetails({
+                                                    ...eventDetails,
+                                                    department: e.target.value,
+                                                })
+                                            }
+                                        >
                                             <option className="text-gray-700">
                                                 Select Department
                                             </option>
@@ -128,7 +190,17 @@ function AddEvent() {
                                     </label>
                                     {/* select box */}
                                     <div className="relative">
-                                        <select className="block appearance-none w-full bg-white border border-gray-400 hover:border-indigo-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                        <select
+                                            className="block appearance-none w-full bg-white border border-gray-400 hover:border-indigo-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                            value={eventDetails.category}
+                                            name="category"
+                                            onChange={(e) =>
+                                                setEventDetails({
+                                                    ...eventDetails,
+                                                    category: e.target.value,
+                                                })
+                                            }
+                                        >
                                             <option className="text-gray-700">
                                                 Select Category
                                             </option>
@@ -152,6 +224,15 @@ function AddEvent() {
                                         <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"></div>
                                         <textarea
                                             type="tel"
+                                            required
+                                            name="description"
+                                            value={eventDetails.description}
+                                            onChange={(e) =>
+                                                setEventDetails({
+                                                    ...eventDetails,
+                                                    description: e.target.value,
+                                                })
+                                            }
                                             className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                                             placeholder="Please enter the description of the project"
                                         ></textarea>
@@ -168,6 +249,15 @@ function AddEvent() {
                                         <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"></div>
                                         <input
                                             type="file"
+                                            required
+                                            name="poster"
+                                            // value={eventDetails.poster}
+                                            onChange={(e) =>
+                                                setEventDetails({
+                                                    ...eventDetails,
+                                                    file: e.target.files[0],
+                                                })
+                                            }
                                             // className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                                             className="w-full
                                             -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 bg-white border-gray-200 outline-none focus:border-indigo-500"
@@ -178,7 +268,10 @@ function AddEvent() {
 
                             <div className="flex -mx-3">
                                 <div className="w-full px-3 mb-5">
-                                    <button className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
+                                    <button
+                                        className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+                                        onClick={handleSubmit}
+                                    >
                                         ADD EVENT
                                     </button>
                                 </div>
