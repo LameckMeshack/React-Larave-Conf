@@ -3,6 +3,7 @@
 
 // Variables
 // @import "variables";
+@import "components/eventCard";
 
 // Bootstrap
 // @import "~bootstrap/scss/bootstrap";
@@ -12,3 +13,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.events-container {
+    //display even cards in grid
+    display: grid;
+    //grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
+    //padding: 1rem;
+    //margin: 1rem;
+}
