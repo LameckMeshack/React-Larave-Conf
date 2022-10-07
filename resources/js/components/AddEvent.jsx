@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getActivities } from "../Store/Actions/ActivityAction";
 import { createEvent } from "../Store/Actions/EventAction";
+import { getRoles } from "../Store/Actions/RoleActions";
 import LoadingBox from "./common/LoadingBox";
 import MessageBox from "./common/MessageBox";
 
@@ -56,6 +58,12 @@ function AddEvent() {
     const event = useSelector((state) => state.eventCreate);
     const { loading, error, eventInfo } = event;
 
+    const departments = useSelector((state) => state.departments);
+
+    const roles = useSelector((state) => state.roles);
+
+    const activities = useSelector((state) => state.activities);
+
     //method that takes in an object and returns a empty object value
     // const resetForm = (obj1) => {
     //     let obj2 = {};
@@ -77,6 +85,12 @@ function AddEvent() {
             category: "",
             poster: "",
         });
+
+    useEffect(() => {
+        dispatch(getRoles);
+        dispatch(getActivities);
+        dispatch(getActivities);
+    }, [eventInfo]);
 
     return (
         <div className="min-w-screen min-h-screen bg-green-700 flex items-center justify-center px-5 py-5">
