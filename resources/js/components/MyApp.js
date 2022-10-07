@@ -18,6 +18,7 @@ function MyApp() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/addevent" element={<AddEvent />} />
                 <Route path="/trial" element={<Trial />} />
+                <Route path="/events" element={<EventCard />} />
                 {/* nested admin route */}
                 {/* <Route path="/admin"> */}
                 <Route
@@ -50,6 +51,7 @@ import Trial from "./Trial";
 import Nav from "./Nav";
 import AddDepartment from "./AddDepartment";
 import AddRoles from "./AddRoles";
+import EventCard from "./EventCard";
 const container = document.getElementById("app");
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(
