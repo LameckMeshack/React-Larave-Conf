@@ -9468,8 +9468,8 @@ var Nav = function Nav() {
           className: function className(_ref5) {
             var isActive = _ref5.isActive;
             return isActive ? "active" : "";
-          },
-          to: "/user",
+          } // to="/user"
+          ,
           children: ["Add Role and Dept ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_icons_fi__WEBPACK_IMPORTED_MODULE_3__.FiChevronDown, {}), " "]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("ul", {
           className: boxClassSubMenu.join(" "),
