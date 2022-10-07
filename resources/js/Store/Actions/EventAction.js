@@ -1,4 +1,5 @@
 // events actions
+import axios from "axios";
 import {
     EVENT_CREATE_REQUEST,
     EVENT_CREATE_SUCCESS,
@@ -15,7 +16,7 @@ export const createEvent = (eventDetails) => async (dispatch, getState) => {
         const {
             userSignin: { userInfo },
         } = getState();
-        const { data } = await Axios.post("/api/events", event, {
+        const { data } = await axios.post("/api/events", event, {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`,
             },
