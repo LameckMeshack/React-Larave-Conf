@@ -8582,7 +8582,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var _components_common_LoadingBox__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/common/LoadingBox */ "./resources/js/components/common/LoadingBox.jsx");
 /* harmony import */ var _components_common_MessageBox__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/common/MessageBox */ "./resources/js/components/common/MessageBox.jsx");
 /* harmony import */ var _Store_Actions_UserAction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Store/Actions/UserAction */ "./resources/js/Store/Actions/UserAction.js");
@@ -8616,6 +8617,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function Login() {
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     email: "",
@@ -8642,6 +8644,13 @@ function Login() {
     }
   };
 
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (userInfo) {
+      navigate("/events");
+    } else {
+      return;
+    }
+  }, [userInfo]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     className: "flex h-screen bg-green-700",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -8711,12 +8720,12 @@ function Login() {
           })
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("login-footer", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
           to: "/login",
           className: "text-gray-700 hover:text-gray-200 text-sm float-left",
           href: "#",
           children: "Forgot Password?"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
           to: "/register",
           className: "text-gray-700 hover:text-gray-200 text-sm float-right",
           href: "#",
@@ -9471,6 +9480,7 @@ var getRoles = function getRoles() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "register": () => (/* binding */ register),
 /* harmony export */   "signin": () => (/* binding */ signin),
 /* harmony export */   "signout": () => (/* binding */ signout)
 /* harmony export */ });
@@ -9505,7 +9515,7 @@ var signin = function signin(email, password) {
               });
               _context.prev = 1;
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/users/signin", {
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("api/login", {
                 email: email,
                 password: password
               });
@@ -9514,7 +9524,7 @@ var signin = function signin(email, password) {
               _yield$axios$post = _context.sent;
               data = _yield$axios$post.data;
               dispatch({
-                type: USER_SIGNIN_SUCCESS,
+                type: _Constants_UserConstants__WEBPACK_IMPORTED_MODULE_1__.USER_SIGNIN_SUCCESS,
                 payload: data
               });
               localStorage.setItem("userInfo", JSON.stringify(data));
@@ -9542,8 +9552,72 @@ var signin = function signin(email, password) {
     };
   }();
 }; // user registration
-// export const register = (name, email, password) => async (dispatch) => {
 
+var register = function register(name, email, password, password_confirmation, role_id, phone, department_id, photo) {
+  return /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(dispatch) {
+      var _yield$axios$post2, data;
+
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              dispatch({
+                type: _Constants_UserConstants__WEBPACK_IMPORTED_MODULE_1__.USER_REGISTER_REQUEST,
+                payload: {
+                  email: email,
+                  password: password
+                }
+              });
+              _context2.prev = 1;
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("api/register", {
+                name: name,
+                email: email,
+                password: password,
+                password_confirmation: password_confirmation,
+                role_id: role_id,
+                phone: phone,
+                department_id: department_id,
+                photo: photo
+              });
+
+            case 4:
+              _yield$axios$post2 = _context2.sent;
+              data = _yield$axios$post2.data;
+              dispatch({
+                type: _Constants_UserConstants__WEBPACK_IMPORTED_MODULE_1__.USER_REGISTER_SUCCESS,
+                payload: data
+              });
+              dispatch({
+                type: _Constants_UserConstants__WEBPACK_IMPORTED_MODULE_1__.USER_SIGNIN_SUCCESS,
+                payload: data
+              });
+              localStorage.setItem("userInfo", JSON.stringify(data));
+              _context2.next = 14;
+              break;
+
+            case 11:
+              _context2.prev = 11;
+              _context2.t0 = _context2["catch"](1);
+              dispatch({
+                type: _Constants_UserConstants__WEBPACK_IMPORTED_MODULE_1__.USER_REGISTER_FAIL,
+                payload: _context2.t0.response && _context2.t0.response.data.message ? _context2.t0.response.data.message : _context2.t0.message
+              });
+
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[1, 11]]);
+    }));
+
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+};
 var signout = function signout() {
   return function (dispatch) {
     localStorage.removeItem("userInfo");
