@@ -97,7 +97,7 @@ const Nav = () => {
                 <li onClick={toggleSubmenu} className="sub__menus__arrows">
                     <NavLink
                         className={({ isActive }) => (isActive ? "active" : "")}
-                        to="/user"
+                        // to="/user"
                     >
                         Add Role and Dept <FiChevronDown />{" "}
                     </NavLink>
