@@ -131,10 +131,10 @@ const Nav = () => {
                     <NavLink
                         onClick={toggleClass}
                         className={({ isActive }) => (isActive ? "active" : "")}
-                        to="/search"
+                        to="/events"
                     >
                         {" "}
-                        Search{" "}
+                        Events{" "}
                     </NavLink>
                 </li>
                 <Outlet />
