@@ -11,7 +11,7 @@ class Department extends Model
 
     protected $fillable = [
         'name',
-        
+
     ];
 
 
@@ -20,8 +20,5 @@ class Department extends Model
         return $this->hasMany(User::class);
     }
 
-    public function documents()
-    {
-        return $this->hasMany(Document::class);
-    }
+   
 }
