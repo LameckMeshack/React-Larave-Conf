@@ -4,30 +4,47 @@ function AddEvent() {
     const [eventDetails, setEventDetails] = useState({
         name: "",
         venue: "",
-        owner: "",
+        owner: "2",
         description: "",
         startDate: "",
         leadDate: "",
         department: "",
         category: "",
+        activities: "",
         poster: null,
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(eventDetails);
-        const formDate = new FormData();
-        formDate.append("name", eventDetails.name);
-        formDate.append("venue", eventDetails.venue);
-        formDate.append("owner", eventDetails.owner);
-        formDate.append("description", eventDetails.description);
-        formDate.append("startDate", eventDetails.startDate);
-        formDate.append("leadDate", eventDetails.leadDate);
-        formDate.append("department", eventDetails.department);
-        formDate.append("category", eventDetails.category);
-        formDate.append("poster", eventDetails.poster);
+        if (
+            eventDetails.name === "" ||
+            eventDetails.venue === "" ||
+            eventDetails.owner === "" ||
+            eventDetails.description === "" ||
+            eventDetails.startDate === "" ||
+            eventDetails.leadDate === "" ||
+            eventDetails.department === "" ||
+            eventDetails.category === "" ||
+            eventDetails.activities === "" ||
+            eventDetails.poster === null
+        ) {
+            alert("Please fill all the fields");
+        } else {
+            const formDate = new FormData();
+            formDate.append("name", eventDetails.name);
+            formDate.append("venue", eventDetails.venue);
+            formDate.append("owner", eventDetails.owner);
+            formDate.append("description", eventDetails.description);
+            formDate.append("startDate", eventDetails.startDate);
+            formDate.append("leadDate", eventDetails.leadDate);
+            formDate.append("department", eventDetails.department);
+            formDate.append("category", eventDetails.category);
+            formDate.append("activities", eventDetails.activities);
+            formDate.append("poster", eventDetails.poster);
 
-        resetForm();
+            resetForm();
+        }
     };
 
     //method that takes in an object and returns a empty object value
@@ -42,13 +59,14 @@ function AddEvent() {
         setEventDetails({
             name: "",
             venue: "",
-            owner: "",
+            owner: "1",
             description: "",
             startDate: "",
             leadDate: "",
+            activities: "",
             department: "",
             category: "",
-            poster: null,
+            poster: "",
         });
 
     return (
@@ -68,7 +86,7 @@ function AddEvent() {
                                 src="https://www.cytonn.com/assets/img/logos/cytonn_logo.svg"
                             />
                         </div>
-                        <div>
+                        <form>
                             <div className="flex -mx-3">
                                 <div className="w-1/2 px-3 mb-5">
                                     <label
@@ -78,7 +96,9 @@ function AddEvent() {
                                         Event Name
                                     </label>
                                     <div className="flex">
-                                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"></div>
+                                        <div className="w-10 z-10 pl-1 text-red-800 text-center pointer-events-none flex items-center justify-center">
+                                            *
+                                        </div>
                                         <input
                                             type="text"
                                             required
@@ -103,7 +123,9 @@ function AddEvent() {
                                         Venue
                                     </label>
                                     <div className="flex">
-                                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"></div>
+                                        <div className="w-10 z-10 pl-1 text-red-800 text-center pointer-events-none flex items-center justify-center">
+                                            *
+                                        </div>
                                         <input
                                             type="text"
                                             required
@@ -130,7 +152,9 @@ function AddEvent() {
                                         Start Date
                                     </label>
                                     <div className="flex">
-                                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"></div>
+                                        <div className="w-10 z-10 pl-1 text-red-800 text-center pointer-events-none flex items-center justify-center">
+                                            *
+                                        </div>
                                         <input
                                             type="date"
                                             min={
@@ -160,7 +184,9 @@ function AddEvent() {
                                         Lead Date
                                     </label>
                                     <div className="flex">
-                                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"></div>
+                                        <div className="w-10 z-10 pl-1 text-red-800 text-center pointer-events-none flex items-center justify-center">
+                                            *
+                                        </div>
                                         <input
                                             type="date"
                                             // minimum date to be today
@@ -254,7 +280,9 @@ function AddEvent() {
                                         Description
                                     </label>
                                     <div className="flex">
-                                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"></div>
+                                        <div className="w-10 z-10 pl-1 text-red-800 text-center pointer-events-none flex items-center justify-center">
+                                            *
+                                        </div>
                                         <textarea
                                             type="tel"
                                             required
@@ -271,7 +299,39 @@ function AddEvent() {
                                         ></textarea>
                                     </div>
                                 </div>
-                                <div className="w-1/2 px-3 mb-5">
+                                <div className="w-1/4 px-3 mb-5">
+                                    <label
+                                        htmlFor="Email"
+                                        className="text-xs font-semibold px-1"
+                                    >
+                                        Activities
+                                    </label>
+                                    <div className="relative">
+                                        <select
+                                            className="block appearance-none w-full bg-white border border-gray-400 hover:border-indigo-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                            value={eventDetails.activities}
+                                            name="activities"
+                                            onChange={(e) =>
+                                                setEventDetails({
+                                                    ...eventDetails,
+                                                    activities: e.target.value,
+                                                })
+                                            }
+                                        >
+                                            <option className="text-gray-700">
+                                                Select Activity
+                                            </option>
+                                            <option>Activity 1</option>
+                                            <option>Activity 2</option>
+                                            <option>Activity 3</option>
+                                            <option>Activity 4</option>
+                                            <option>Activity 5</option>
+                                            <option>Activity 6</option>
+                                            <option>Activity 7</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="w-1/4 px-3 mb-5">
                                     <label
                                         htmlFor="Email"
                                         className="text-xs font-semibold px-1"
@@ -279,7 +339,9 @@ function AddEvent() {
                                         Poster
                                     </label>
                                     <div className="flex">
-                                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"></div>
+                                        <div className="w-10 z-10 pl-1 text-red-800 text-center pointer-events-none flex items-center justify-center">
+                                            *
+                                        </div>
                                         <input
                                             type="file"
                                             required
@@ -288,7 +350,7 @@ function AddEvent() {
                                             onChange={(e) =>
                                                 setEventDetails({
                                                     ...eventDetails,
-                                                    file: e.target.files[0],
+                                                    poster: e.target.files[0],
                                                 })
                                             }
                                             // className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
@@ -302,14 +364,14 @@ function AddEvent() {
                             <div className="flex -mx-3">
                                 <div className="w-full px-3 mb-5">
                                     <button
-                                        className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+                                        className="block w-full max-w-xs mx-auto bg-green-700 hover:bg-green-200 text-white hover:text-gray-700focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
                                         onClick={handleSubmit}
                                     >
                                         ADD EVENT
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
