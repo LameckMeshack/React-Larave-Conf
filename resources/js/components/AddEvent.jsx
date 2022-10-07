@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createEvent } from "../Store/Actions/EventAction";
 
 function AddEvent() {
+    const dispatch = useDispatch();
     const [eventDetails, setEventDetails] = useState({
         name: "",
         venue: "",
@@ -31,17 +34,19 @@ function AddEvent() {
         ) {
             alert("Please fill all the fields");
         } else {
-            const formDate = new FormData();
-            formDate.append("name", eventDetails.name);
-            formDate.append("venue", eventDetails.venue);
-            formDate.append("owner", eventDetails.owner);
-            formDate.append("description", eventDetails.description);
-            formDate.append("startDate", eventDetails.startDate);
-            formDate.append("leadDate", eventDetails.leadDate);
-            formDate.append("department", eventDetails.department);
-            formDate.append("category", eventDetails.category);
-            formDate.append("activities", eventDetails.activities);
-            formDate.append("poster", eventDetails.poster);
+            const formData = new FormData();
+            formData.append("name", eventDetails.name);
+            formData.append("venue", eventDetails.venue);
+            formData.append("owner", eventDetails.owner);
+            formData.append("description", eventDetails.description);
+            formData.append("startDate", eventDetails.startDate);
+            formData.append("leadDate", eventDetails.leadDate);
+            formData.append("department", eventDetails.department);
+            formData.append("category", eventDetails.category);
+            formData.append("activities", eventDetails.activities);
+            formData.append("poster", eventDetails.poster);
+
+            dispatch(createEvent(formData));
 
             resetForm();
         }
