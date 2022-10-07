@@ -8978,7 +8978,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var createDepartment = function createDepartment(departmentDetails) {
   return /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(dispatch, getState) {
-      var _getState, userInfo, _yield$axios$post, data;
+      var _yield$axios$post, data;
 
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
@@ -8989,38 +8989,38 @@ var createDepartment = function createDepartment(departmentDetails) {
                 payload: departmentDetails
               });
               _context.prev = 1;
-              _getState = getState(), userInfo = _getState.userSignin.userInfo;
-              _context.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/departments", departmentDetails, {
-                headers: {
-                  Authorization: "Bearer ".concat(userInfo.token)
-                }
-              });
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/departments", departmentDetails // {
+              //     headers: {
+              //         Authorization: `Bearer ${userInfo.token}`,
+              //     },
+              // }
+              );
 
-            case 5:
+            case 4:
               _yield$axios$post = _context.sent;
               data = _yield$axios$post.data;
               dispatch({
                 type: _Constants_DepartmentConstants__WEBPACK_IMPORTED_MODULE_1__.DEPARTMENT_CREATE_SUCCESS,
                 payload: data.department
               });
-              _context.next = 13;
+              _context.next = 12;
               break;
 
-            case 10:
-              _context.prev = 10;
+            case 9:
+              _context.prev = 9;
               _context.t0 = _context["catch"](1);
               dispatch({
                 type: _Constants_DepartmentConstants__WEBPACK_IMPORTED_MODULE_1__.DEPARTMENT_CREATE_FAIL,
                 payload: _context.t0.response && _context.t0.response.data.message ? _context.t0.response.data.message : _context.t0.message
               });
 
-            case 13:
+            case 12:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 10]]);
+      }, _callee, null, [[1, 9]]);
     }));
 
     return function (_x, _x2) {
@@ -9215,7 +9215,8 @@ var getEvents = function getEvents() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createRoleAction": () => (/* binding */ createRoleAction)
+/* harmony export */   "createRoleAction": () => (/* binding */ createRoleAction),
+/* harmony export */   "getRoles": () => (/* binding */ getRoles)
 /* harmony export */ });
 /* harmony import */ var _Constants_RoleConstants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Constants/RoleConstants */ "./resources/js/Store/Constants/RoleConstants.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -9279,6 +9280,54 @@ var createRoleAction = function createRoleAction(role) {
 
     return function (_x, _x2) {
       return _ref.apply(this, arguments);
+    };
+  }();
+}; // // getting all the roles
+
+var getRoles = function getRoles() {
+  return /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(dispatch) {
+      var _yield$Axios$get, data;
+
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              dispatch({
+                type: ROLE_LIST_REQUEST
+              });
+              _context2.prev = 1;
+              _context2.next = 4;
+              return Axios.get("/api/roles");
+
+            case 4:
+              _yield$Axios$get = _context2.sent;
+              data = _yield$Axios$get.data;
+              dispatch({
+                type: ROLE_LIST_SUCCESS,
+                payload: data
+              });
+              _context2.next = 12;
+              break;
+
+            case 9:
+              _context2.prev = 9;
+              _context2.t0 = _context2["catch"](1);
+              dispatch({
+                type: ROLE_LIST_FAIl,
+                payload: _context2.t0.response && _context2.t0.response.data.message ? _context2.t0.response.data.message : _context2.t0.message
+              });
+
+            case 12:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[1, 9]]);
+    }));
+
+    return function (_x3) {
+      return _ref2.apply(this, arguments);
     };
   }();
 };
@@ -9378,6 +9427,34 @@ var signout = function signout() {
 
 /***/ }),
 
+/***/ "./resources/js/Store/Constants/ActivityConstants.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/Store/Constants/ActivityConstants.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ACTIVITY_CREATE_FAIL": () => (/* binding */ ACTIVITY_CREATE_FAIL),
+/* harmony export */   "ACTIVITY_CREATE_REQUEST": () => (/* binding */ ACTIVITY_CREATE_REQUEST),
+/* harmony export */   "ACTIVITY_CREATE_RESET": () => (/* binding */ ACTIVITY_CREATE_RESET),
+/* harmony export */   "ACTIVITY_CREATE_SUCCESS": () => (/* binding */ ACTIVITY_CREATE_SUCCESS),
+/* harmony export */   "ACTIVITY_LIST_FAIL": () => (/* binding */ ACTIVITY_LIST_FAIL),
+/* harmony export */   "ACTIVITY_LIST_REQUEST": () => (/* binding */ ACTIVITY_LIST_REQUEST),
+/* harmony export */   "ACTIVITY_LIST_SUCCESS": () => (/* binding */ ACTIVITY_LIST_SUCCESS)
+/* harmony export */ });
+// activity constants
+var ACTIVITY_CREATE_REQUEST = "ACTIVITY_CREATE_REQUEST";
+var ACTIVITY_CREATE_SUCCESS = "ACTIVITY_CREATE_SUCCESS";
+var ACTIVITY_CREATE_FAIL = "ACTIVITY_CREATE_FAIL";
+var ACTIVITY_CREATE_RESET = "ACTIVITY_CREATE_RESET";
+var ACTIVITY_LIST_REQUEST = "ACTIVITY_LIST_REQUEST";
+var ACTIVITY_LIST_SUCCESS = "ACTIVITY_LIST_SUCCESS";
+var ACTIVITY_LIST_FAIL = "ACTIVITY_LIST_FAIL";
+
+/***/ }),
+
 /***/ "./resources/js/Store/Constants/DepartmentConstants.js":
 /*!*************************************************************!*\
   !*** ./resources/js/Store/Constants/DepartmentConstants.js ***!
@@ -9468,13 +9545,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CREATE_ROLE_FAIL": () => (/* binding */ CREATE_ROLE_FAIL),
 /* harmony export */   "CREATE_ROLE_REQUEST": () => (/* binding */ CREATE_ROLE_REQUEST),
 /* harmony export */   "CREATE_ROLE_RESET": () => (/* binding */ CREATE_ROLE_RESET),
-/* harmony export */   "CREATE_ROLE_SUCCESS": () => (/* binding */ CREATE_ROLE_SUCCESS)
+/* harmony export */   "CREATE_ROLE_SUCCESS": () => (/* binding */ CREATE_ROLE_SUCCESS),
+/* harmony export */   "LIST_ROLE_FAIL": () => (/* binding */ LIST_ROLE_FAIL),
+/* harmony export */   "LIST_ROLE_REQUEST": () => (/* binding */ LIST_ROLE_REQUEST),
+/* harmony export */   "LIST_ROLE_SUCCESS": () => (/* binding */ LIST_ROLE_SUCCESS)
 /* harmony export */ });
 // role contants
 var CREATE_ROLE_REQUEST = "CREATE_ROLE_REQUEST";
 var CREATE_ROLE_SUCCESS = "CREATE_ROLE_SUCCESS";
 var CREATE_ROLE_FAIL = "CREATE_ROLE_FAIL";
 var CREATE_ROLE_RESET = "CREATE_ROLE_RESET";
+var LIST_ROLE_REQUEST = "LIST_ROLE_REQUEST";
+var LIST_ROLE_SUCCESS = "LIST_ROLE_SUCCESS";
+var LIST_ROLE_FAIL = "LIST_ROLE_FAIL";
 
 /***/ }),
 
@@ -9505,6 +9588,81 @@ var USER_SIGNOUT = "USER_SIGNOUT";
 
 /***/ }),
 
+/***/ "./resources/js/Store/Reducers/ActivityReducer.js":
+/*!********************************************************!*\
+  !*** ./resources/js/Store/Reducers/ActivityReducer.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "activityCreateReducer": () => (/* binding */ activityCreateReducer),
+/* harmony export */   "activityListReducer": () => (/* binding */ activityListReducer)
+/* harmony export */ });
+/* harmony import */ var _Constants_ActivityConstants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Constants/ActivityConstants */ "./resources/js/Store/Constants/ActivityConstants.js");
+
+var activityCreateReducer = function activityCreateReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _Constants_ActivityConstants__WEBPACK_IMPORTED_MODULE_0__.ACTIVITY_CREATE_REQUEST:
+      return {
+        loading: true
+      };
+
+    case _Constants_ActivityConstants__WEBPACK_IMPORTED_MODULE_0__.ACTIVITY_CREATE_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        activity: action.payload
+      };
+
+    case _Constants_ActivityConstants__WEBPACK_IMPORTED_MODULE_0__.ACTIVITY_CREATE_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      };
+
+    case _Constants_ActivityConstants__WEBPACK_IMPORTED_MODULE_0__.ACTIVITY_CREATE_RESET:
+      return {};
+
+    default:
+      return state;
+  }
+};
+var activityListReducer = function activityListReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    activities: []
+  };
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _Constants_ActivityConstants__WEBPACK_IMPORTED_MODULE_0__.ACTIVITY_LIST_REQUEST:
+      return {
+        loading: true
+      };
+
+    case _Constants_ActivityConstants__WEBPACK_IMPORTED_MODULE_0__.ACTIVITY_LIST_SUCCESS:
+      return {
+        loading: false,
+        activities: action.payload
+      };
+
+    case _Constants_ActivityConstants__WEBPACK_IMPORTED_MODULE_0__.ACTIVITY_LIST_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      };
+
+    default:
+      return state;
+  }
+};
+
+/***/ }),
+
 /***/ "./resources/js/Store/Reducers/DepartmentReducers.js":
 /*!***********************************************************!*\
   !*** ./resources/js/Store/Reducers/DepartmentReducers.js ***!
@@ -9514,7 +9672,8 @@ var USER_SIGNOUT = "USER_SIGNOUT";
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "departmentCreateReducer": () => (/* binding */ departmentCreateReducer)
+/* harmony export */   "departmentCreateReducer": () => (/* binding */ departmentCreateReducer),
+/* harmony export */   "depertmentListReducer": () => (/* binding */ depertmentListReducer)
 /* harmony export */ });
 /* harmony import */ var _Constants_DepartmentConstants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Constants/DepartmentConstants */ "./resources/js/Store/Constants/DepartmentConstants.js");
 
@@ -9543,6 +9702,34 @@ var departmentCreateReducer = function departmentCreateReducer() {
 
     case _Constants_DepartmentConstants__WEBPACK_IMPORTED_MODULE_0__.DEPARTMENT_CREATE_RESET:
       return {};
+
+    default:
+      return state;
+  }
+};
+var depertmentListReducer = function depertmentListReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    departments: []
+  };
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case DEPARTMENT_LIST_REQUEST:
+      return {
+        loading: true
+      };
+
+    case DEPARTMENT_LIST_SUCCESS:
+      return {
+        loading: false,
+        departments: action.payload
+      };
+
+    case DEPARTMENT_LIST_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      };
 
     default:
       return state;
@@ -9637,7 +9824,8 @@ var eventListReducer = function eventListReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "roleCreateReducer": () => (/* binding */ roleCreateReducer)
+/* harmony export */   "roleCreateReducer": () => (/* binding */ roleCreateReducer),
+/* harmony export */   "roleListReducer": () => (/* binding */ roleListReducer)
 /* harmony export */ });
 /* harmony import */ var _Constants_RoleConstants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Constants/RoleConstants */ "./resources/js/Store/Constants/RoleConstants.js");
 //role reducer
@@ -9671,6 +9859,35 @@ var roleCreateReducer = function roleCreateReducer() {
     default:
       return state;
   }
+}; //rol
+
+var roleListReducer = function roleListReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    roles: []
+  };
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case ROLE_LIST_REQUEST:
+      return {
+        loading: true
+      };
+
+    case ROLE_LIST_SUCCESS:
+      return {
+        loading: false,
+        roles: action.payload
+      };
+
+    case ROLE_LIST_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      };
+
+    default:
+      return state;
+  }
 };
 
 /***/ }),
@@ -9684,7 +9901,8 @@ var roleCreateReducer = function roleCreateReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "userSigninReducer": () => (/* binding */ userSigninReducer)
+/* harmony export */   "userSigninReducer": () => (/* binding */ userSigninReducer),
+/* harmony export */   "userSignoutReducer": () => (/* binding */ userSignoutReducer)
 /* harmony export */ });
 /* harmony import */ var _Constants_UserConstants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Constants/UserConstants */ "./resources/js/Store/Constants/UserConstants.js");
  // user sign in reducer
@@ -9717,6 +9935,19 @@ var userSigninReducer = function userSigninReducer() {
     default:
       return state;
   }
+}; // signout reducer
+
+var userSignoutReducer = function userSignoutReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _Constants_UserConstants__WEBPACK_IMPORTED_MODULE_0__.USER_SIGNOUT:
+      return {};
+
+    default:
+      return state;
+  }
 };
 
 /***/ }),
@@ -9732,27 +9963,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "rootReducer": () => (/* binding */ rootReducer)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _UserReducers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserReducers */ "./resources/js/Store/Reducers/UserReducers.js");
 /* harmony import */ var _EventReducers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EventReducers */ "./resources/js/Store/Reducers/EventReducers.js");
 /* harmony import */ var _DepartmentReducers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DepartmentReducers */ "./resources/js/Store/Reducers/DepartmentReducers.js");
 /* harmony import */ var _RoleReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RoleReducer */ "./resources/js/Store/Reducers/RoleReducer.js");
+/* harmony import */ var _ActivityReducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ActivityReducer */ "./resources/js/Store/Reducers/ActivityReducer.js");
 
 
 
 
 
 
-var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_4__.combineReducers)({
+
+var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_5__.combineReducers)({
   //user
   userInfo: _UserReducers__WEBPACK_IMPORTED_MODULE_0__.userSigninReducer,
+  signout: _UserReducers__WEBPACK_IMPORTED_MODULE_0__.userSignoutReducer,
   //event
   eventCreate: _EventReducers__WEBPACK_IMPORTED_MODULE_1__.eventCreateReducer,
   eventList: _EventReducers__WEBPACK_IMPORTED_MODULE_1__.eventListReducer,
   //department
   departmentCreate: _DepartmentReducers__WEBPACK_IMPORTED_MODULE_2__.departmentCreateReducer,
+  departments: _DepartmentReducers__WEBPACK_IMPORTED_MODULE_2__.depertmentListReducer,
   // role
-  roleCreate: _RoleReducer__WEBPACK_IMPORTED_MODULE_3__.roleCreateReducer
+  roleCreate: _RoleReducer__WEBPACK_IMPORTED_MODULE_3__.roleCreateReducer,
+  roles: _RoleReducer__WEBPACK_IMPORTED_MODULE_3__.roleListReducer,
+  //activity
+  activityCreate: _ActivityReducer__WEBPACK_IMPORTED_MODULE_4__.activityCreateReducer,
+  activityList: _ActivityReducer__WEBPACK_IMPORTED_MODULE_4__.activityListReducer
 });
 
 /***/ }),
@@ -10560,16 +10799,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _EventCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EventCard */ "./resources/js/components/EventCard.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _Store_Actions_EventAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Store/Actions/EventAction */ "./resources/js/Store/Actions/EventAction.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
 
 
 
 
 
 function EventContainer() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    dispatch(_Store_Actions_EventAction__WEBPACK_IMPORTED_MODULE_3__.getEvents);
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     className: " events-container",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_EventCard__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_EventCard__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_EventCard__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_EventCard__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_EventCard__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_EventCard__WEBPACK_IMPORTED_MODULE_1__["default"], {})]
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_EventCard__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_EventCard__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_EventCard__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_EventCard__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_EventCard__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_EventCard__WEBPACK_IMPORTED_MODULE_1__["default"], {})]
   });
 }
 
