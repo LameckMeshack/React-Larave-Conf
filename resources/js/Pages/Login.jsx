@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import LoadingBox from "../components/common/LoadingBox";
 import MessageBox from "../components/common/MessageBox";
 import { signin } from "../Store/Actions/UserAction";
 
 function Login() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [loginData, setLoginData] = useState({
         email: "",
         password: "",
@@ -26,6 +27,14 @@ function Login() {
             dispatch(signin(loginData.email, loginData.password));
         }
     };
+
+    useEffect(() => {
+        if (userInfo) {
+            navigate("/events");
+        } else {
+            return;
+        }
+    }, [userInfo]);
 
     return (
         <div className="flex h-screen bg-green-700">
