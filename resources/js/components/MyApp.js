@@ -53,10 +53,17 @@ import AddDepartment from "./AddDepartment";
 import AddRoles from "./AddRoles";
 import EventCard from "./EventCard";
 import EventContainer from "./EventContainer";
+import store from "../Store/store";
+import { Provider } from "react-redux";
+import { AuthProvider } from "../Context/AuthContext";
 const container = document.getElementById("app");
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(
     <BrowserRouter>
-        <MyApp />
+        <Provider store={store}>
+            <AuthProvider>
+                <MyApp />
+            </AuthProvider>
+        </Provider>
     </BrowserRouter>
 );
