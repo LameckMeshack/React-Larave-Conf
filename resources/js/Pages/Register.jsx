@@ -18,7 +18,7 @@ function Register() {
                                 src="https://www.cytonn.com/assets/img/logos/cytonn_logo.svg"
                             />
                         </div>
-                        <div>
+                        <form>
                             <div className="flex -mx-3">
                                 <div className="w-1/2 px-3 mb-5">
                                     <label
@@ -33,6 +33,7 @@ function Register() {
                                             type="text"
                                             className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                                             placeholder="Liaison"
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -49,6 +50,7 @@ function Register() {
                                             type="email"
                                             className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                                             placeholder="ccyton@gmail.com"
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -67,6 +69,7 @@ function Register() {
                                             type="password"
                                             className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                                             placeholder="Liaison"
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -83,6 +86,7 @@ function Register() {
                                             type="password"
                                             className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                                             placeholder="confirm password"
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -166,12 +170,15 @@ function Register() {
 
                             <div className="flex -mx-3">
                                 <div className="w-full px-3 mb-5">
-                                    <button className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
+                                    <button
+                                        className="block w-full max-w-xs mx-auto bg-green-700 hover:bg-green-200 text-white hover:text-gray-700focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+                                        // className="w-full bg-green-700 hover:bg-green-200 text-white hover:text-gray-700 font-bold py-2 px-4 mb-6 rounded"
+                                    >
                                         REGISTER NOW
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
