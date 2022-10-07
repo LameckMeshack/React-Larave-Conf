@@ -1,19 +1,19 @@
 import {
-    CREATE_ROLE_REQUEST,
-    CREATE_ROLE_SUCCESS,
-    CREATE_ROLE_FAIL,
-    CREATE_ROLE_RESET,
-    LIST_ROLE_REQUEST,
-    LIST_ROLE_SUCCESS,
-    LIST_ROLE_FAIL,
-} from "../Constants/RoleConstants";
+    ACTIVITY_CREATE_REQUEST,
+    ACTIVITY_CREATE_SUCCESS,
+    ACTIVITY_CREATE_FAIL,
+    ACTIVITY_CREATE_RESET,
+    ACTIVITY_LIST_REQUEST,
+    ACTIVITY_LIST_SUCCESS,
+    ACTIVITY_LIST_FAIL,
+} from "../Constants/ActivityConstants";
 
-//role craetion action
+// create avtivity
 
-export const createRoleAction = (role) => async (dispatch, getState) => {
+export const createActivity = (activity) => async (dispatch, getState) => {
     try {
         dispatch({
-            type: CREATE_ROLE_REQUEST,
+            type: ACTIVITY_CREATE_REQUEST,
         });
 
         const {
@@ -27,15 +27,15 @@ export const createRoleAction = (role) => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.post("/api/roles", role, config);
+        const { data } = await axios.post(`/api/activities`, activity, config);
 
         dispatch({
-            type: CREATE_ROLE_SUCCESS,
+            type: ACTIVITY_CREATE_SUCCESS,
             payload: data,
         });
     } catch (error) {
         dispatch({
-            type: CREATE_ROLE_FAIL,
+            type: ACTIVITY_CREATE_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message
@@ -44,15 +44,15 @@ export const createRoleAction = (role) => async (dispatch, getState) => {
     }
 };
 
-// // getting all the roles
-export const getRoles = () => async (dispatch) => {
-    dispatch({ type: ROLE_LIST_REQUEST });
+// getting all the activities
+export const getActivities = () => async (dispatch) => {
+    dispatch({ type: ACTIVITY_LIST_REQUEST });
     try {
-        const { data } = await Axios.get("/api/roles");
-        dispatch({ type: ROLE_LIST_SUCCESS, payload: data });
+        const { data } = await Axios.get("/api/activities");
+        dispatch({ type: ACTIVITY_LIST_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
-            type: ROLE_LIST_FAIl,
+            type: ACTIVITY_LIST_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message

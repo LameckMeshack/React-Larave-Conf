@@ -17,17 +17,17 @@ export const createDepartment =
             payload: departmentDetails,
         });
         try {
-            const {
-                userSignin: { userInfo },
-            } = getState();
+            // const {
+            //     userSignin: { userInfo },
+            // } = getState();
             const { data } = await axios.post(
                 "/api/departments",
-                departmentDetails,
-                {
-                    headers: {
-                        Authorization: `Bearer ${userInfo.token}`,
-                    },
-                }
+                departmentDetails
+                // {
+                //     headers: {
+                //         Authorization: `Bearer ${userInfo.token}`,
+                //     },
+                // }
             );
             dispatch({
                 type: DEPARTMENT_CREATE_SUCCESS,
