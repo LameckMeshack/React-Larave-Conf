@@ -4,6 +4,9 @@ import {
     CREATE_ROLE_SUCCESS,
     CREATE_ROLE_FAIL,
     CREATE_ROLE_RESET,
+    LIST_ROLE_REQUEST,
+    LIST_ROLE_SUCCESS,
+    LIST_ROLE_FAIL,
 } from "../Constants/RoleConstants";
 
 export const roleCreateReducer = (state = {}, action) => {
@@ -24,11 +27,11 @@ export const roleCreateReducer = (state = {}, action) => {
 //rol
 export const roleListReducer = (state = { roles: [] }, action) => {
     switch (action.type) {
-        case ROLE_LIST_REQUEST:
+        case LIST_ROLE_REQUEST:
             return { loading: true };
-        case ROLE_LIST_SUCCESS:
+        case LIST_ROLE_SUCCESS:
             return { loading: false, roles: action.payload };
-        case ROLE_LIST_FAIL:
+        case LIST_ROLE_FAIL:
             return { loading: false, error: action.payload };
         default:
             return state;
