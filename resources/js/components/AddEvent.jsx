@@ -16,7 +16,40 @@ function AddEvent() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(eventDetails);
+        const formDate = new FormData();
+        formDate.append("name", eventDetails.name);
+        formDate.append("venue", eventDetails.venue);
+        formDate.append("owner", eventDetails.owner);
+        formDate.append("description", eventDetails.description);
+        formDate.append("startDate", eventDetails.startDate);
+        formDate.append("leadDate", eventDetails.leadDate);
+        formDate.append("department", eventDetails.department);
+        formDate.append("category", eventDetails.category);
+        formDate.append("poster", eventDetails.poster);
+
+        resetForm();
     };
+
+    //method that takes in an object and returns a empty object value
+    // const resetForm = (obj1) => {
+    //     let obj2 = {};
+    //     for (let key in obj1) {
+    //         obj2[key] = "";
+    //     }
+    // };
+
+    const resetForm = () =>
+        setEventDetails({
+            name: "",
+            venue: "",
+            owner: "",
+            description: "",
+            startDate: "",
+            leadDate: "",
+            department: "",
+            category: "",
+            poster: null,
+        });
 
     return (
         <div className="min-w-screen min-h-screen bg-green-700 flex items-center justify-center px-5 py-5">
