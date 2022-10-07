@@ -3,6 +3,9 @@ import {
     DEPARTMENT_CREATE_SUCCESS,
     DEPARTMENT_CREATE_FAIL,
     DEPARTMENT_CREATE_RESET,
+    DEPARTMENT_LIST_SUCCESS,
+    DEPARTMENT_LIST_FAIL,
+    DEPARTMENT_LIST_REQUEST,
 } from "../Constants/DepartmentConstants";
 
 export const departmentCreateReducer = (state = {}, action) => {
