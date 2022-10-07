@@ -20,3 +20,13 @@ export const userSigninReducer = (state = {}, action) => {
             return state;
     }
 };
+
+// signout reducer
+export const userSignoutReducer = (state = {}, action) => {
+    switch (action.type) {
+        case USER_SIGNOUT:
+            return {};
+        default:
+            return state;
+    }
+};
