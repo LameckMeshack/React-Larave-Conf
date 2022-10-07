@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createEvent } from "../Store/Actions/EventAction";
+import LoadingBox from "./common/LoadingBox";
+import MessageBox from "./common/MessageBox";
 
 function AddEvent() {
     const dispatch = useDispatch();
@@ -51,6 +53,8 @@ function AddEvent() {
             resetForm();
         }
     };
+    const event = useSelector((state) => state.eventCreate);
+    const { loading, error, eventInfo } = event;
 
     //method that takes in an object and returns a empty object value
     // const resetForm = (obj1) => {
@@ -91,6 +95,10 @@ function AddEvent() {
                                 src="https://www.cytonn.com/assets/img/logos/cytonn_logo.svg"
                             />
                         </div>
+                        {loading && <LoadingBox></LoadingBox>}
+                        {error && (
+                            <MessageBox variant="danger">{error}</MessageBox>
+                        )}
                         <form>
                             <div className="flex -mx-3">
                                 <div className="w-1/2 px-3 mb-5">

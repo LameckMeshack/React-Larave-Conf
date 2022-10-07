@@ -1,7 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import LoadingBox from "../components/common/LoadingBox";
+import MessageBox from "../components/common/MessageBox";
+import { signin } from "../Store/Actions/UserAction";
 
 function Login() {
+    const dispatch = useDispatch();
+    const [loginData, setLoginData] = useState({
+        email: "",
+        password: "",
+    });
+
+    const userSignin = useSelector((state) => state.userInfo);
+    const { loading, error, userInfo } = userSignin;
+
+    //  const { userInfo, loading, error } = userSignin;
+    const handleLogin = (e) => {
+        e.preventDefault();
+        // if login details are empty elert
+
+        if (loginData.email === "" || loginData.password === "") {
+            alert("Please fill all the fields");
+        } else {
+            dispatch(signin(loginData.email, loginData.password));
+        }
+    };
+
     return (
         <div className="flex h-screen bg-green-700">
             <div className="w-full max-w-xs m-auto bg-green-100 rounded p-5">
@@ -13,8 +38,10 @@ function Login() {
                     className="w-20 mx-auto mb-5"
                     src="https://www.cytonn.com/assets/img/logos/cytonn_logo.svg"
                 />
+                {loading && <LoadingBox></LoadingBox>}
+                {error && <MessageBox variant="danger">{error}</MessageBox>}
                 {/* </login-header> */}
-                <form className="w-full">
+                <form className="w-full" onSubmit={handleLogin}>
                     <div className=" w-full   mb-5">
                         <label
                             htmlFor=""
@@ -29,6 +56,13 @@ function Login() {
                                 className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                                 placeholder="Liaison"
                                 required
+                                // value={loginData.email}
+                                onChange={(e) =>
+                                    setLoginData({
+                                        ...loginData,
+                                        email: e.target.value,
+                                    })
+                                }
                             />
                         </div>
                     </div>
@@ -46,6 +80,13 @@ function Login() {
                                 className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                                 placeholder="Password"
                                 required
+                                // value={loginData.password}
+                                onChange={(e) =>
+                                    setLoginData({
+                                        ...loginData,
+                                        password: e.target.value,
+                                    })
+                                }
                             />
                         </div>
                     </div>
