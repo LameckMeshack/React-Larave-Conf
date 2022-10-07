@@ -13,10 +13,16 @@ return [
     |
     */
 
-    'defaults' => [
-        'guard' => 'web',
+    // 'defaults' => [
+    //     'guard' => 'web',
+    //     'passwords' => 'users',
+    // ],
+
+     'defaults' => [
+        'guard' => 'api',
         'passwords' => 'users',
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -35,12 +41,12 @@ return [
     |
     */
 
-    'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
-    ],
+    // 'guards' => [
+    //     'web' => [
+    //         'driver' => 'session',
+    //         'provider' => 'users',
+    //     ],
+    // ],
 
     /*
     |--------------------------------------------------------------------------
@@ -58,6 +64,18 @@ return [
     | Supported: "database", "eloquent"
     |
     */
+
+    'guards' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'users',
+        ],
+    ],
 
     'providers' => [
         'users' => [
