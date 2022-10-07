@@ -1,0 +1,5 @@
+// role contants
+export const CREATE_ROLE_REQUEST = "CREATE_ROLE_REQUEST";
+export const CREATE_ROLE_SUCCESS = "CREATE_ROLE_SUCCESS";
+export const CREATE_ROLE_FAIL = "CREATE_ROLE_FAIL";
+export const CREATE_ROLE_RESET = "CREATE_ROLE_RESET";
