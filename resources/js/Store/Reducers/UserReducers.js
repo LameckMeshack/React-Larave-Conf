@@ -8,8 +8,14 @@ import {
     USER_REGISTER_FAIL,
 } from "../Constants/UserConstants";
 
+const initialState = {
+    userInfo: localStorage.getItem("userInfo")
+        ? JSON.parse(localStorage.getItem("userInfo"))
+        : null,
+};
+
 // user sign in reducer
-export const userSigninReducer = (state = {}, action) => {
+export const userSigninReducer = (state = initialState, action) => {
     switch (action.type) {
         case USER_SIGNIN_REQUEST:
             return { loading: true };
