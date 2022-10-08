@@ -6,7 +6,7 @@ import MessageBox from "./common/MessageBox";
 
 function AddDepartment() {
     const dispatch = useDispatch();
-    const [department, setDepartment] = useState("");
+    const [name, setName] = useState("");
 
     const deptCreate = useSelector((state) => state.departmentCreate);
     const { loading, error, success } = deptCreate;
@@ -14,14 +14,15 @@ function AddDepartment() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // if department is empty alert
-        if (department === "") {
+        if (name === "") {
             alert("Please enter a department");
         } else {
-            dispatch(createDepartment(department));
-            setDepartment("");
+            dispatch(createDepartment(name));
+
+            setName("");
         }
     };
-
+    console.log(name);
     return (
         <>
             <div className="flex h-screen bg-green-700">
@@ -47,10 +48,8 @@ function AddDepartment() {
                             <div className="flex">
                                 <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"></div>
                                 <input
-                                    value={department}
-                                    onChange={(e) =>
-                                        setDepartment(e.target.value)
-                                    }
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
                                     required
                                     type="text"
                                     className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"

@@ -44,28 +44,28 @@ import {
 //         }
 //     };
 
-export const createDepartment = (departmentDetails) => async (dispatch) => {
+export const createDepartment = (name) => async (dispatch) => {
     try {
         dispatch({
             type: DEPARTMENT_CREATE_REQUEST,
         });
 
-        const {
-            userLogin: { userInfo },
-        } = getState();
+        // const {
+        //     userLogin: { userInfo },
+        // } = getState();
 
-        const config = {
-            headers: {
-                userInfo,
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${userInfo.token}`,
-            },
-        };
+        // const config = {
+        //     headers: {
+        //         userInfo,
+        //         "Content-Type": "application/json",
+        //         Authorization: `Bearer ${userInfo.token}`,
+        //     },
+        // };
 
         const { data } = await axios.post(
             "/api/departments",
-            departmentDetails,
-            config
+            (name = { name })
+            // config
         );
 
         dispatch({
