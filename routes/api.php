@@ -6,6 +6,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\FrequencyController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ActivityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,4 +53,26 @@ Route::group(['middleware' => 'api'], function($router) {
     Route::post('/events', [EventController::class, 'store']);
     Route::put('/events/{id}', [EventController::class, 'update']);
     Route::delete('/events/{id}', [EventController::class, 'destroy']);
+});
+
+Route::group(['middleware' => 'api'], function($router) {
+    Route::get('/frequencies', [FrequencyController::class, 'index']);
+    Route::post('/frequencies', [FrequencyController::class, 'store']);
+    Route::put('/frequencies/{id}', [FrequencyController::class, 'update']);
+    Route::delete('/frequencies/{id}', [FrequencyController::class, 'destroy']);
+});
+
+Route::group(['middleware' => 'api'], function($router) {
+    Route::get('/categories', [CategoryController::class, 'index']);
+    Route::post('/categories', [CategoryController::class, 'store']);
+    Route::put('/categories/{id}', [CategoryController::class, 'update']);
+    Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
+});
+
+
+Route::group(['middleware' => 'api'], function($router) {
+    Route::get('/activities', [ActivityController::class, 'index']);
+    Route::post('/activities', [ActivityController::class, 'store']);
+    Route::put('/activities/{id}', [ActivityController::class, 'update']);
+    Route::delete('/activities/{id}', [ActivityController::class, 'destroy']);
 });
