@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import LoadingBox from "../components/common/LoadingBox";
 import MessageBox from "../components/common/MessageBox";
+import { AuthContext } from "../Context/AuthContext";
 import { signin } from "../Store/Actions/UserAction";
 
 function Login() {
@@ -12,6 +13,9 @@ function Login() {
         email: "",
         password: "",
     });
+
+    // using context hook to check whether user is logged in or not
+    const user = useContext(AuthContext);
 
     const userSignin = useSelector((state) => state.userInfo);
     const { loading, error, userInfo } = userSignin;
@@ -29,6 +33,9 @@ function Login() {
     };
 
     useEffect(() => {
+        if (user) {
+            navigate("/events");
+        }
         if (userInfo) {
             navigate("/events");
         } else {
