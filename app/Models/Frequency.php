@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Department extends Model
+class Frequency extends Model
 {
     use HasFactory;
 
@@ -13,11 +13,8 @@ class Department extends Model
         'name',
     ];
 
-
-    public function users()
+    public function events()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Event::class);
     }
-
-   
 }
