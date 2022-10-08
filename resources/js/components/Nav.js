@@ -1,9 +1,13 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Navigate, NavLink, Outlet, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { FiAlignRight, FiXCircle, FiChevronDown } from "react-icons/fi";
 import "./Nav.css";
+import { signout } from "../Store/Actions/UserAction";
+import { useDispatch } from "react-redux";
 
 const Nav = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [isMenu, setisMenu] = useState(false);
     const [isResponsiveclose, setResponsiveclose] = useState(false);
     const toggleClass = () => {
@@ -26,6 +30,15 @@ const Nav = () => {
     } else {
         boxClassSubMenu.push("");
     }
+
+    const handleSignout = () => {
+        // clear localStorage
+        localStorage.clear();
+
+        dispatch(signout);
+        navigate("/login");
+    };
+
     return (
         <div className="nav">
             {isResponsiveclose === true ? (
@@ -136,6 +149,14 @@ const Nav = () => {
                         {" "}
                         Events{" "}
                     </NavLink>
+                </li>
+                <li>
+                    <button
+                        onClick={handleSignout}
+                        // className={({ isActive }) => (isActive ? "active" : "")}
+                    >
+                        Logout
+                    </button>
                 </li>
                 <Outlet />
             </ul>
