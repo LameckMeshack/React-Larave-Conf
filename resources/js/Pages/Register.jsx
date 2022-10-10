@@ -5,12 +5,13 @@ import { AuthContext } from "../Context/AuthContext";
 function Register() {
     const navigate = useNavigate();
     const user = useContext(AuthContext);
+    console.log(user);
 
-    useEffect(() => {
-        if (user) {
-            navigate("/events");
-        } else return;
-    }, [user]);
+    // useEffect(() => {
+    //     if (user) {
+    //         navigate("/events");
+    //     } else return;
+    // }, [user]);
     return (
         <div className="min-w-screen min-h-screen bg-green-700 flex items-center justify-center px-5 py-5">
             <div
