@@ -4,12 +4,13 @@
 // Variables
 // @import "variables";
 @import "components/eventCard";
+@import "components/singleEvent";
 
 // Bootstrap
 // @import "~bootstrap/scss/bootstrap";
-// #app {
-//     background: red;
-// }
+#app {
+    background: green;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
