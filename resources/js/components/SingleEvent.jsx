@@ -16,6 +16,7 @@ function SingleEvent() {
                     <p>
                         Start Date: <span> 12/12/2020</span>
                     </p>
+
                     <p>
                         Lead Date: <span> 12/12/2020</span>
                     </p>
@@ -24,6 +25,7 @@ function SingleEvent() {
                     <p>Location: The Chancery</p>
 
                     <p>Event Organizer: Rhino</p>
+                    <p>Status: Ontime</p>
                 </div>
             </div>
             <div className="event-bottom">
