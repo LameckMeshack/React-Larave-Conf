@@ -33,9 +33,9 @@ const Nav = () => {
 
     const handleSignout = () => {
         // clear localStorage
-        localStorage.clear();
+        // localStorage.clear();
 
-        dispatch(signout);
+        dispatch(signout());
         navigate("/login");
     };
 
