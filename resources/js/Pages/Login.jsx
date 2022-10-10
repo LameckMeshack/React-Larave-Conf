@@ -15,7 +15,8 @@ function Login() {
     });
 
     // using context hook to check whether user is logged in or not
-    const user = useContext(AuthContext);
+    // const user = useContext(AuthContext);
+    // console.log(user);
 
     const userSignin = useSelector((state) => state.userInfo);
     const { loading, error, userInfo } = userSignin;
@@ -33,13 +34,10 @@ function Login() {
     };
 
     useEffect(() => {
-        if (user) {
-            navigate("/events");
-        }
         if (userInfo) {
             navigate("/events");
         } else {
-            return;
+            navigate("/login");
         }
     }, [userInfo]);
 
