@@ -8,6 +8,11 @@ import {
 import { roleCreateReducer, roleListReducer } from "./RoleReducer";
 import { eventListReducer } from "./EventReducers";
 import { activityCreateReducer, activityListReducer } from "./ActivityReducer";
+import {
+    frequencyCreateReducer,
+    frequencyListReducer,
+} from "./FrequencyReducers";
+import { categoryCreateReducer, categoryListReducer } from "./CategoryReducers";
 
 export const rootReducer = combineReducers({
     //user
@@ -22,8 +27,13 @@ export const rootReducer = combineReducers({
     // role
     roleCreate: roleCreateReducer,
     roles: roleListReducer,
-
     //activity
     activityCreate: activityCreateReducer,
     activityList: activityListReducer,
+    //frequency
+    frequencyCreate: frequencyCreateReducer,
+    frequencyList: frequencyListReducer,
+    //category
+    categoryCreate: categoryCreateReducer,
+    categoryList: categoryListReducer,
 });
