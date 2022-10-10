@@ -46,13 +46,13 @@ export const createRoleAction = (name) => async (dispatch, getState) => {
 
 // // getting all the roles
 export const getRoles = () => async (dispatch) => {
-    dispatch({ type: ROLE_LIST_REQUEST });
+    dispatch({ type: LIST_ROLE_REQUEST });
     try {
-        const { data } = await Axios.get("/api/roles");
-        dispatch({ type: ROLE_LIST_SUCCESS, payload: data });
+        const { data } = await axios.get("/api/roles");
+        dispatch({ type: LIST_ROLE_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
-            type: ROLE_LIST_FAIl,
+            type: LIST_ROLE_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message

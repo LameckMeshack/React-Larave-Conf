@@ -48,7 +48,7 @@ export const createActivity = (activity) => async (dispatch, getState) => {
 export const getActivities = () => async (dispatch) => {
     dispatch({ type: ACTIVITY_LIST_REQUEST });
     try {
-        const { data } = await Axios.get("/api/activities");
+        const { data } = await axios.get("/api/activities");
         dispatch({ type: ACTIVITY_LIST_SUCCESS, payload: data });
     } catch (error) {
         dispatch({

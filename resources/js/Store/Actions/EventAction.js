@@ -1,5 +1,7 @@
 // events actions
 import axios from "axios";
+import { useContext } from "react";
+
 import {
     EVENT_CREATE_REQUEST,
     EVENT_CREATE_SUCCESS,
@@ -13,14 +15,36 @@ import {
 export const createEvent = (eventDetails) => async (dispatch, getState) => {
     dispatch({ type: EVENT_CREATE_REQUEST, payload: event });
     try {
-        const {
-            userSignin: { userInfo },
-        } = getState();
-        const { data } = await axios.post("/api/events", event, {
-            headers: {
-                Authorization: `Bearer ${userInfo.token}`,
-            },
-        });
+        // const {
+        //     userSignin: { userInfo },
+        // } = getState();
+        // const { data } = await axios.post(
+        //     "/api/events",
+        //     { eventDetails }
+        // send form data in an axios post request
+        const { data } = await axios.post("/api/events", eventDetails);
+
+        // {
+        //     name,
+        //     description,
+        //     start_date,
+        //     lead_date,
+        //     venue,
+        //     department_id,
+        //     frequency_id,
+
+        //     category_id,
+        //     activity_id,
+        //     poster,
+        //     created_by,
+        // }
+
+        // , {
+        //     headers: {
+        //         Authorization: `Bearer ${userInfo.token}`,
+        //     },
+        // }
+        // );
         dispatch({ type: EVENT_CREATE_SUCCESS, payload: data.event });
     } catch (error) {
         dispatch({
@@ -37,7 +61,7 @@ export const createEvent = (eventDetails) => async (dispatch, getState) => {
 export const getEvents = () => async (dispatch) => {
     dispatch({ type: EVENT_LIST_REQUEST });
     try {
-        const { data } = await Axios.get("/api/events");
+        const { data } = await axios.get("/api/events");
         dispatch({ type: EVENT_LIST_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
