@@ -3,8 +3,10 @@ import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "../Context/AuthContext";
 import { getActivities } from "../Store/Actions/ActivityAction";
+import { getCategories } from "../Store/Actions/CategoryActions";
 import { getDepartments } from "../Store/Actions/DepartmentAction";
 import { createEvent } from "../Store/Actions/EventAction";
+import { getFrequencies } from "../Store/Actions/FrequencyAction";
 import { getRoles } from "../Store/Actions/RoleActions";
 import LoadingBox from "./common/LoadingBox";
 import MessageBox from "./common/MessageBox";
@@ -69,8 +71,11 @@ function AddEvent() {
     const activities = useSelector((state) => state.activityList);
     const { activities: activityList } = activities;
 
-    const roles = useSelector((state) => state.roles);
-    const { roles: rolesList } = roles;
+    const categoryList = useSelector((state) => state.categoryList);
+    const { categories } = categoryList;
+
+    const frequencyList = useSelector((state) => state.frequencyList);
+    const { frequencies } = frequencyList;
 
     const departments = useSelector((state) => state.departments);
     const { departments: departmentList } = departments;
@@ -96,6 +101,8 @@ function AddEvent() {
         dispatch(getRoles());
         dispatch(getDepartments());
         dispatch(getActivities());
+        dispatch(getFrequencies());
+        dispatch(getCategories());
     }, [eventInfo]);
     // console.log(departments.departments);
     // console.log(roles);
@@ -347,10 +354,20 @@ function AddEvent() {
                                             <option className="text-gray-700">
                                                 Select Category
                                             </option>
+                                            {categories &&
+                                                categories.length > 0 &&
+                                                categories.map((cat) => (
+                                                    <option
+                                                        key={cat.id}
+                                                        value={cat.id}
+                                                    >
+                                                        {cat.name}
+                                                    </option>
+                                                ))}
 
-                                            <option value="1">official</option>
+                                            {/* <option value="1">official</option>
                                             <option value="4">Fun</option>
-                                            <option>Cate</option>
+                                            <option>Cate</option> */}
                                         </select>
                                     </div>
                                 </div>
@@ -406,9 +423,16 @@ function AddEvent() {
                                             <option className="text-gray-700">
                                                 Select Frequency
                                             </option>
-                                            <option value="1">Daily</option>
-                                            <option value="2">Weekly </option>
-                                            <option value="3">Annually </option>
+                                            {frequencies &&
+                                                frequencies.length > 0 &&
+                                                frequencies.map((freq) => (
+                                                    <option
+                                                        key={freq.id}
+                                                        value={freq.id}
+                                                    >
+                                                        {freq.name}
+                                                    </option>
+                                                ))}
                                         </select>
                                     </div>
                                 </div>
