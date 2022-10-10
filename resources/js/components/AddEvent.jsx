@@ -1,33 +1,38 @@
-import React, { useEffect, useState } from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { AuthContext } from "../Context/AuthContext";
 import { getActivities } from "../Store/Actions/ActivityAction";
+import { getDepartments } from "../Store/Actions/DepartmentAction";
 import { createEvent } from "../Store/Actions/EventAction";
 import { getRoles } from "../Store/Actions/RoleActions";
 import LoadingBox from "./common/LoadingBox";
 import MessageBox from "./common/MessageBox";
 
 function AddEvent() {
+    const user = useContext(AuthContext);
     const dispatch = useDispatch();
     const [eventDetails, setEventDetails] = useState({
         name: "",
         venue: "",
-        owner: "2",
+        created_by: "4",
         description: "",
-        startDate: "",
-        leadDate: "",
-        department: "",
-        category: "",
-        activities: "",
+        start_date: "",
+        lead_date: "",
+        department_id: "",
+        activity_id: "",
+        category_id: "",
+        activity_id: "",
         poster: null,
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(eventDetails);
+        // console.log(eventDetails);
         if (
             eventDetails.name === "" ||
             eventDetails.venue === "" ||
-            eventDetails.owner === "" ||
+            eventDetails.created_by === "" ||
             eventDetails.description === "" ||
             eventDetails.startDate === "" ||
             eventDetails.leadDate === "" ||
@@ -41,42 +46,43 @@ function AddEvent() {
             const formData = new FormData();
             formData.append("name", eventDetails.name);
             formData.append("venue", eventDetails.venue);
-            formData.append("owner", eventDetails.owner);
+            formData.append("created_by", eventDetails.created_by);
             formData.append("description", eventDetails.description);
-            formData.append("startDate", eventDetails.startDate);
-            formData.append("leadDate", eventDetails.leadDate);
-            formData.append("department", eventDetails.department);
-            formData.append("category", eventDetails.category);
-            formData.append("activities", eventDetails.activities);
+            formData.append("start_date", eventDetails.startDate);
+            formData.append("lead_date", eventDetails.leadDate);
+            formData.append("department_id", eventDetails.department_id);
+            formData.append("category_id", eventDetails.category_id);
+            formData.append("activity_id", eventDetails.activity_id);
+            formData.append("frequency_id", eventDetails.frequency_id);
             formData.append("poster", eventDetails.poster);
 
-            dispatch(createEvent(formData));
+            dispatch(createEvent(eventDetails));
+            // dispatch(createEvent(formData));
 
-            resetForm();
+            console.log(eventDetails);
+            // resetForm();
         }
     };
     const event = useSelector((state) => state.eventCreate);
     const { loading, error, eventInfo } = event;
 
-    const departments = useSelector((state) => state.departments);
+    const activities = useSelector((state) => state.activityList);
+    const { activities: activityList } = activities;
 
     const roles = useSelector((state) => state.roles);
+    const { roles: rolesList } = roles;
 
-    const activities = useSelector((state) => state.activities);
+    const departments = useSelector((state) => state.departments);
+    const { departments: departmentList } = departments;
 
-    //method that takes in an object and returns a empty object value
-    // const resetForm = (obj1) => {
-    //     let obj2 = {};
-    //     for (let key in obj1) {
-    //         obj2[key] = "";
-    //     }
-    // };
+    // const user = useContext(AuthContext);
+    // console.log(user);
 
     const resetForm = () =>
         setEventDetails({
             name: "",
             venue: "",
-            owner: "1",
+            created_by: "4",
             description: "",
             startDate: "",
             leadDate: "",
@@ -86,12 +92,13 @@ function AddEvent() {
             poster: "",
         });
 
-    useEffect(() => {
-        dispatch(getRoles);
-        dispatch(getActivities);
-        dispatch(getActivities);
+    useLayoutEffect(() => {
+        dispatch(getRoles());
+        dispatch(getDepartments());
+        dispatch(getActivities());
     }, [eventInfo]);
-
+    // console.log(departments.departments);
+    // console.log(roles);
     return (
         <div className="min-w-screen min-h-screen bg-green-700 flex items-center justify-center px-5 py-5">
             <div
@@ -191,11 +198,11 @@ function AddEvent() {
                                             }
                                             required
                                             name="startDate"
-                                            value={eventDetails.startDate}
+                                            value={eventDetails.start_date}
                                             onChange={(e) => {
                                                 setEventDetails({
                                                     ...eventDetails,
-                                                    startDate: e.target.value,
+                                                    start_date: e.target.value,
                                                 });
                                             }}
                                             className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
@@ -224,11 +231,11 @@ function AddEvent() {
                                             }
                                             required
                                             name="leadDate"
-                                            value={eventDetails.leadDate}
+                                            value={eventDetails.lead_date}
                                             onChange={(e) => {
                                                 setEventDetails({
                                                     ...eventDetails,
-                                                    leadDate: e.target.value,
+                                                    lead_date: e.target.value,
                                                 });
                                             }}
                                             required
@@ -253,17 +260,67 @@ function AddEvent() {
                                             onChange={(e) =>
                                                 setEventDetails({
                                                     ...eventDetails,
-                                                    department: e.target.value,
+                                                    department_id:
+                                                        e.target.value,
                                                 })
                                             }
                                         >
                                             <option className="text-gray-700">
                                                 Select Department
                                             </option>
+                                            {departmentList &&
+                                                departmentList.length > 0 &&
+                                                departmentList.map((dept) => (
+                                                    <option
+                                                        key={dept.id}
+                                                        value={dept.id}
+                                                    >
+                                                        {dept.name}
+                                                    </option>
+                                                ))}
 
-                                            <option>Department1</option>
-                                            <option>Department2</option>
-                                            <option>Department2</option>
+                                            {/* <option value="1">
+                                                Technology{" "}
+                                            </option>
+                                            <option value="2">Admin</option>
+                                            <option value="3">
+                                                Human Resc
+                                            </option>
+                                            <option value="5">Finance</option> */}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div className="w-1/2 px-3 mb-5">
+                                    <label
+                                        htmlFor=""
+                                        className="text-xs font-semibold px-1"
+                                    >
+                                        Activities
+                                    </label>
+                                    <div className="relative">
+                                        <select
+                                            className="block appearance-none w-full bg-white border border-gray-400 hover:border-indigo-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                            onChange={(e) =>
+                                                setEventDetails({
+                                                    ...eventDetails,
+                                                    activity_id: e.target.value,
+                                                })
+                                            }
+                                        >
+                                            <option className="text-gray-700">
+                                                Select Activities
+                                            </option>
+                                            {activityList &&
+                                                activityList.length > 0 &&
+                                                activityList.map((act) => (
+                                                    <option
+                                                        value={act.id}
+                                                        key={act.id}
+                                                    >
+                                                        {act.name}
+                                                    </option>
+                                                ))}
                                         </select>
                                     </div>
                                 </div>
@@ -278,12 +335,12 @@ function AddEvent() {
                                     <div className="relative">
                                         <select
                                             className="block appearance-none w-full bg-white border border-gray-400 hover:border-indigo-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                                            value={eventDetails.category}
+                                            value={eventDetails.category_id}
                                             name="category"
                                             onChange={(e) =>
                                                 setEventDetails({
                                                     ...eventDetails,
-                                                    category: e.target.value,
+                                                    category_id: e.target.value,
                                                 })
                                             }
                                         >
@@ -291,9 +348,9 @@ function AddEvent() {
                                                 Select Category
                                             </option>
 
-                                            <option>Annualy</option>
-                                            <option>Requirent</option>
-                                            <option>Department2</option>
+                                            <option value="1">official</option>
+                                            <option value="4">Fun</option>
+                                            <option>Cate</option>
                                         </select>
                                     </div>
                                 </div>
@@ -331,33 +388,31 @@ function AddEvent() {
                                         htmlFor="Email"
                                         className="text-xs font-semibold px-1"
                                     >
-                                        Activities
+                                        Frequency
                                     </label>
                                     <div className="relative">
                                         <select
                                             className="block appearance-none w-full bg-white border border-gray-400 hover:border-indigo-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                                            value={eventDetails.activities}
+                                            value={eventDetails.frequency_id}
                                             name="activities"
                                             onChange={(e) =>
                                                 setEventDetails({
                                                     ...eventDetails,
-                                                    activities: e.target.value,
+                                                    frequency_id:
+                                                        e.target.value,
                                                 })
                                             }
                                         >
                                             <option className="text-gray-700">
-                                                Select Activity
+                                                Select Frequency
                                             </option>
-                                            <option>Activity 1</option>
-                                            <option>Activity 2</option>
-                                            <option>Activity 3</option>
-                                            <option>Activity 4</option>
-                                            <option>Activity 5</option>
-                                            <option>Activity 6</option>
-                                            <option>Activity 7</option>
+                                            <option value="1">Daily</option>
+                                            <option value="2">Weekly </option>
+                                            <option value="3">Annually </option>
                                         </select>
                                     </div>
                                 </div>
+
                                 <div className="w-1/4 px-3 mb-5">
                                     <label
                                         htmlFor="Email"
