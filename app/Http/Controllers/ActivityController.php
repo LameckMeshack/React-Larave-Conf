@@ -14,9 +14,7 @@ class ActivityController extends Controller
     {
         $activities = Activity::all();
 
-        return response()->json([
-            'activities' => $activities
-        ], 200);
+        return response()->json( $activities, 200);
     }
 
     public function store(Request $request)

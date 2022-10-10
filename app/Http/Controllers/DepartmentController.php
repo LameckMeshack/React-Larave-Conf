@@ -15,9 +15,7 @@ class DepartmentController extends Controller
     {
         $departments = Department::all();
         
-        return response()->json([
-            'departments' => $departments
-        ], 200);
+        return response()->json( $departments, 200);
     }
 
 

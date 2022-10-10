@@ -14,13 +14,16 @@ class EventController extends Controller
     {
         $events = Event::all();
 
-        return response()->json([
-            'events' => $events
-        ], 200);
+        // return response()->json([
+        //     'events' => $events
+        //     // $events
+        // ], 200);
+        return response()->json($events, 200);
     }
 
     public function store(Request $request)
     {
+        dd(request()->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:2|max:100',
             'description' => 'required|string|min:2|max:100',

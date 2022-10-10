@@ -14,9 +14,7 @@ class RoleController extends Controller
     {
         $roles = Role::all();
         
-        return response()->json([
-            'roles' => $roles
-        ], 200);
+        return response()->json( $roles, 200);
     }
 
     // store role

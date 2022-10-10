@@ -13,9 +13,7 @@ class FrequencyController extends Controller
     {
         $frequencies = Frequency::all();
 
-        return response()->json([
-            'frequencies' => $frequencies
-        ], 200);
+        return response()->json( $frequencies, 200);
     }
 
     public function store(Request $request)
