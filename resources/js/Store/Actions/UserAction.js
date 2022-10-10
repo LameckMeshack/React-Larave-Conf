@@ -70,5 +70,7 @@ export const register =
 
 export const signout = () => (dispatch) => {
     localStorage.removeItem("userInfo");
+    // clear
+    localStorage.clear();
     dispatch({ type: USER_SIGNOUT });
 };
