@@ -23,12 +23,12 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-        dd(request()->all());
+        // dd(request()->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:2|max:100',
             'description' => 'required|string|min:2|max:100',
-            'start_date' => 'date',
-            'lead_date' => 'date',
+            'start_date' => 'required|date',
+            'lead_date' => 'required|date',
             'venue' => 'required|string|min:2|max:100',
             'department_id' => 'required|integer',
             'category_id' => 'required|integer',
