@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { createDepartment } from "../Store/Actions/DepartmentAction";
 import LoadingBox from "./common/LoadingBox";
 import MessageBox from "./common/MessageBox";
@@ -25,6 +26,12 @@ function AddDepartment() {
     console.log(name);
     return (
         <>
+            <Link
+                className="m-16 p-4 rounded bg-blue-600"
+                to="/roles/departments"
+            >
+                Back to departments
+            </Link>
             <div className="flex h-screen bg-green-700">
                 <div className="w-full max-w-xs m-auto bg-green-100 rounded p-5">
                     {/* <login-header> */}
