@@ -38,11 +38,9 @@ function EventContainer() {
                                 desc={event.description}
                                 name={event.name}
                                 id={event.id}
-                                // get  category from category table using event.category_id
-                                category={event.category_id}
-                                // get user name from the  user table using event.created_by
-                                created_by={event.created_by}
-                                // created_by={event.created_by}
+                                category={event.category.name}
+                                created_by={event.created_by?.name}
+                                start_date={event.start_date}
                             />
                         </Link>
                     ))
