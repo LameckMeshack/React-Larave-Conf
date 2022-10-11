@@ -14,63 +14,65 @@ function MyApp() {
     return (
         <>
             <Nav />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route
-                    path="/events/:id"
-                    element={
-                        <PrivateRoute>
-                            <SingleEvent />
-                        </PrivateRoute>
-                    }
-                />
-                <Route
-                    path="/addevent"
-                    element={
-                        <PrivateRoute>
-                            <AddEvent />
-                        </PrivateRoute>
-                    }
-                />
-                <Route
-                    path="/roles/departments"
-                    element={
-                        <AdminRoute>
-                            <RolesDepartments />
-                        </AdminRoute>
-                    }
-                />
-                <Route path="/trial" element={<Trial />} />
-                <Route
-                    path="/events"
-                    element={
-                        <PrivateRoute>
-                            <EventContainer />
-                        </PrivateRoute>
-                    }
-                />
-                {/* nested admin route */}
-                {/* <Route path="/admin"> */}
-                <Route
-                    index
-                    path="admin/department"
-                    element={
-                        <AdminRoute>
-                            <AddDepartment />
-                        </AdminRoute>
-                    }
-                />
-                <Route
-                    path="admin/role"
-                    element={
-                        <AdminRoute>
-                            <AddRoles />
-                        </AdminRoute>
-                    }
-                />
-            </Routes>
+            <div className="h-screen">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route
+                        path="/events/:id"
+                        element={
+                            <PrivateRoute>
+                                <SingleEvent />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/addevent"
+                        element={
+                            <PrivateRoute>
+                                <AddEvent />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/roles/departments"
+                        element={
+                            <AdminRoute>
+                                <RolesDepartments />
+                            </AdminRoute>
+                        }
+                    />
+                    <Route path="/trial" element={<Trial />} />
+                    <Route
+                        path="/events"
+                        element={
+                            <PrivateRoute>
+                                <EventContainer />
+                            </PrivateRoute>
+                        }
+                    />
+                    {/* nested admin route */}
+                    {/* <Route path="/admin"> */}
+                    <Route
+                        index
+                        path="admin/department"
+                        element={
+                            <AdminRoute>
+                                <AddDepartment />
+                            </AdminRoute>
+                        }
+                    />
+                    <Route
+                        path="admin/role"
+                        element={
+                            <AdminRoute>
+                                <AddRoles />
+                            </AdminRoute>
+                        }
+                    />
+                </Routes>
+            </div>
             <Footer />
         </>
     );
