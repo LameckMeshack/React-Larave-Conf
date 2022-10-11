@@ -12,15 +12,19 @@ class EventReminder extends Mailable
     use Queueable, SerializesModels;
     public $event;
 
+    public $user;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($event)
+    public function __construct($event, $user)
     {
         $this->event = $event;
+        $this->user = $user;
     }
+   
 
     /**
      * Build the message.
@@ -30,6 +34,7 @@ class EventReminder extends Mailable
     public function build()
     {
 //event reminder template
+        // return $this->subject($this->event->name." reminder")->view('emails.event_reminder');
         return $this->subject($this->event->name." reminder")->view('emails.event_reminder');
         
     }
