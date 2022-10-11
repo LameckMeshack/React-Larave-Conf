@@ -18,7 +18,14 @@ function MyApp() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
+                    <Route
+                        path="/register"
+                        element={
+                            <AdminRoute>
+                                <Register />
+                            </AdminRoute>
+                        }
+                    />
                     <Route path="/addactivity" element={<AddActivity />} />
                     <Route
                         path="/events/:id"
