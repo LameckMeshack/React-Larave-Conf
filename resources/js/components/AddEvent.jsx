@@ -36,8 +36,8 @@ function AddEvent() {
             eventDetails.venue === "" ||
             eventDetails.created_by === "" ||
             eventDetails.description === "" ||
-            eventDetails.startDate === "" ||
-            eventDetails.leadDate === "" ||
+            eventDetails.start_date === "" ||
+            eventDetails.lead_date === "" ||
             eventDetails.department === "" ||
             eventDetails.category === "" ||
             eventDetails.activities === "" ||
@@ -50,16 +50,16 @@ function AddEvent() {
             formData.append("venue", eventDetails.venue);
             formData.append("created_by", eventDetails.created_by);
             formData.append("description", eventDetails.description);
-            formData.append("start_date", eventDetails.startDate);
-            formData.append("lead_date", eventDetails.leadDate);
+            formData.append("start_date", eventDetails.start_date);
+            formData.append("lead_date", eventDetails.lead_date);
             formData.append("department_id", eventDetails.department_id);
             formData.append("category_id", eventDetails.category_id);
             formData.append("activity_id", eventDetails.activity_id);
             formData.append("frequency_id", eventDetails.frequency_id);
             formData.append("poster", eventDetails.poster);
 
-            dispatch(createEvent(eventDetails));
-            // dispatch(createEvent(formData));
+            // dispatch(createEvent(eventDetails));
+            dispatch(createEvent(formData));
 
             console.log(eventDetails);
             // resetForm();
@@ -89,8 +89,8 @@ function AddEvent() {
             venue: "",
             created_by: "4",
             description: "",
-            startDate: "",
-            leadDate: "",
+            start_date: "",
+            lead_date: "",
             activities: "",
             department: "",
             category: "",
@@ -204,7 +204,7 @@ function AddEvent() {
                                                     .split("T")[0]
                                             }
                                             required
-                                            name="startDate"
+                                            name="start_date"
                                             value={eventDetails.start_date}
                                             onChange={(e) => {
                                                 setEventDetails({
@@ -237,7 +237,7 @@ function AddEvent() {
                                                     .split("T")[0]
                                             }
                                             required
-                                            name="leadDate"
+                                            name="lead_date"
                                             value={eventDetails.lead_date}
                                             onChange={(e) => {
                                                 setEventDetails({
@@ -246,7 +246,7 @@ function AddEvent() {
                                                 });
                                             }}
                                             required
-                                            max={eventDetails.startDate}
+                                            max={eventDetails.start_date}
                                             className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                                             placeholder="confirm password"
                                         />
@@ -285,15 +285,6 @@ function AddEvent() {
                                                         {dept.name}
                                                     </option>
                                                 ))}
-
-                                            {/* <option value="1">
-                                                Technology{" "}
-                                            </option>
-                                            <option value="2">Admin</option>
-                                            <option value="3">
-                                                Human Resc
-                                            </option>
-                                            <option value="5">Finance</option> */}
                                         </select>
                                     </div>
                                 </div>
@@ -338,7 +329,6 @@ function AddEvent() {
                                     >
                                         Category
                                     </label>
-                                    {/* select box */}
                                     <div className="relative">
                                         <select
                                             className="block appearance-none w-full bg-white border border-gray-400 hover:border-indigo-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
@@ -364,10 +354,6 @@ function AddEvent() {
                                                         {cat.name}
                                                     </option>
                                                 ))}
-
-                                            {/* <option value="1">official</option>
-                                            <option value="4">Fun</option>
-                                            <option>Cate</option> */}
                                         </select>
                                     </div>
                                 </div>
