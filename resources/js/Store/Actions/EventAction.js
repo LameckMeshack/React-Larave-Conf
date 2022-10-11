@@ -10,41 +10,16 @@ import {
     EVENT_LIST_REQUEST,
     EVENT_LIST_SUCCESS,
     EVENT_LIST_FAIL,
+    EVENT_DETAILS_SUCCESS,
+    EVENT_DETAILS_FAIL,
+    EVENT_DETAILS_REQUEST,
 } from "../Constants/EventConstants";
 
 export const createEvent = (eventDetails) => async (dispatch, getState) => {
     dispatch({ type: EVENT_CREATE_REQUEST, payload: event });
     try {
-        // const {
-        //     userSignin: { userInfo },
-        // } = getState();
-        // const { data } = await axios.post(
-        //     "/api/events",
-        //     { eventDetails }
-        // send form data in an axios post request
         const { data } = await axios.post("/api/events", eventDetails);
 
-        // {
-        //     name,
-        //     description,
-        //     start_date,
-        //     lead_date,
-        //     venue,
-        //     department_id,
-        //     frequency_id,
-
-        //     category_id,
-        //     activity_id,
-        //     poster,
-        //     created_by,
-        // }
-
-        // , {
-        //     headers: {
-        //         Authorization: `Bearer ${userInfo.token}`,
-        //     },
-        // }
-        // );
         dispatch({ type: EVENT_CREATE_SUCCESS, payload: data.event });
     } catch (error) {
         dispatch({
@@ -66,6 +41,23 @@ export const getEvents = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: EVENT_LIST_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};
+
+//get single event
+export const getSingleEvent = (id) => async (dispatch) => {
+    dispatch({ type: EVENT_DETAILS_REQUEST });
+    try {
+        const { data } = await axios.get(`/api/events/${id}`);
+        dispatch({ type: EVENT_DETAILS_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: EVENT_DETAILS_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message
