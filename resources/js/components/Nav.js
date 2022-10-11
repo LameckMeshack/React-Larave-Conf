@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FiAlignRight, FiXCircle, FiChevronDown } from "react-icons/fi";
 import "./Nav.css";
 import { signout } from "../Store/Actions/UserAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Nav = () => {
     const dispatch = useDispatch();
@@ -38,6 +38,7 @@ const Nav = () => {
         dispatch(signout());
         navigate("/login");
     };
+    const user = useSelector((state) => state.userInfo.userInfo);
 
     return (
         <div className="nav">
@@ -65,101 +66,101 @@ const Nav = () => {
                 </>
             )}
             <ul className={boxClass.join(" ")}>
-                {/* Approach #1 --- Active  */}
                 <li>
                     <NavLink
                         onClick={toggleClass}
                         className={({ isActive }) => (isActive ? "active" : "")}
                         to="/"
                     >
-                        Home
-                    </NavLink>
-                </li>
-
-                {/* Approach #2 --- Active  */}
-                <li>
-                    <NavLink
-                        onClick={toggleClass}
-                        style={({ isActive }) => {
-                            return {
-                                color: isActive ? "green" : "",
-                            };
-                        }}
-                        to="/login"
-                    >
-                        Login
-                    </NavLink>
-                </li>
-                <li onClick={toggleSubmenu} className="sub__menus__arrows">
-                    <NavLink
-                        className={({ isActive }) => (isActive ? "active" : "")}
-                        to="/register"
-                    >
-                        Register
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        onClick={toggleClass}
-                        className={({ isActive }) => (isActive ? "active" : "")}
-                        to="/addevent"
-                    >
-                        Add Event
-                    </NavLink>
-                </li>
-                <li onClick={toggleSubmenu} className="sub__menus__arrows">
-                    <NavLink
-                        className={({ isActive }) => (isActive ? "active" : "")}
-                        // to="/user"
-                    >
-                        Add Role and Dept <FiChevronDown />{" "}
-                    </NavLink>
-                    <ul className={boxClassSubMenu.join(" ")}>
-                        <li>
-                            <NavLink
-                                onClick={toggleClass}
-                                className={({ isActive }) =>
-                                    isActive ? "active" : ""
-                                }
-                                to="/admin/department"
-                            >
-                                Add Department
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                onClick={toggleClass}
-                                className={({ isActive }) =>
-                                    isActive ? "active" : ""
-                                }
-                                to="/admin/role"
-                            >
-                                Add Role
-                            </NavLink>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <NavLink
-                        onClick={toggleClass}
-                        className={({ isActive }) => (isActive ? "active" : "")}
-                        to="/events"
-                    >
                         {" "}
-                        Events{" "}
+                        Home{" "}
                     </NavLink>
                 </li>
-                <li>
-                    <button
-                        onClick={handleSignout}
-                        // className={({ isActive }) => (isActive ? "active" : "")}
-                    >
-                        Logout
-                    </button>
-                </li>
-                <Outlet />
+
+                {user ? (
+                    <>
+                        <li>
+                            <NavLink
+                                onClick={toggleClass}
+                                className={({ isActive }) =>
+                                    isActive ? "active" : ""
+                                }
+                                to="/events"
+                            >
+                                {" "}
+                                Events{" "}
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                onClick={toggleClass}
+                                className={({ isActive }) =>
+                                    isActive ? "active" : ""
+                                }
+                                to="/roles/departments"
+                            >
+                                {" "}
+                                Roles and Departments{" "}
+                            </NavLink>
+                        </li>
+                        <li>
+                            <button
+                                onClick={handleSignout}
+                                // className={({ isActive }) => (isActive ? "active" : "")}
+                            >
+                                Logout
+                            </button>
+                        </li>
+                    </>
+                ) : (
+                    <>
+                        <li>
+                            <NavLink
+                                onClick={toggleClass}
+                                className={({ isActive }) =>
+                                    isActive ? "active" : ""
+                                }
+                                to="/"
+                            >
+                                Home
+                            </NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink
+                                onClick={toggleClass}
+                                style={({ isActive }) => {
+                                    return {
+                                        color: isActive ? "green" : "",
+                                    };
+                                }}
+                                to="/login"
+                            >
+                                Login
+                            </NavLink>
+                        </li>
+                        <li
+                            onClick={toggleSubmenu}
+                            className="sub__menus__arrows"
+                        >
+                            <NavLink
+                                className={({ isActive }) =>
+                                    isActive ? "active" : ""
+                                }
+                                to="/register"
+                            >
+                                Register
+                            </NavLink>
+                        </li>
+                    </>
+                )}
             </ul>
+            {/* <ul className={boxClass.join(" ")>
+                
+
+              
+                  </ul> */}
+            <Outlet />
         </div>
     );
 };
