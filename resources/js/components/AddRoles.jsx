@@ -37,10 +37,10 @@ function AddRoles() {
                     <h1 className="font-bold text-3xl text-center text-gray-900">
                         Add Roles
                     </h1>
-                    {/* <img
-                    className="w-20 mx-auto mb-5"
-                    src="https://www.cytonn.com/assets/img/logos/cytonn_logo.svg"
-                /> */}
+                    <img
+                        className="w-20 mx-auto mb-5"
+                        src="https://www.cytonn.com/assets/img/logos/cytonn_logo.svg"
+                    />
                     {loading && <LoadingBox></LoadingBox>}
                     {error && <MessageBox variant="danger">{error}</MessageBox>}
                     <form className="w-full" onSubmit={handleSubmit}>
