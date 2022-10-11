@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getSingleEvent } from "../Store/Actions/EventAction";
 
 function SingleEvent() {
@@ -113,7 +113,7 @@ function SingleEvent() {
                                         </tr>
                                     </tbody>
                                 </table>
-                                <button>Add Activity</button>
+                                <Link to="/addactivity">Add Activity</Link>
                             </div>
                         </div>
                     </div>
