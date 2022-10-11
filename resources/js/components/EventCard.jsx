@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-function EventCard({ id, name, created_by, category, desc }) {
+function EventCard({ id, name, created_by, category, desc, start_date }) {
     return (
         <div className="card-link">
             <article className="event-card">
@@ -13,6 +13,8 @@ function EventCard({ id, name, created_by, category, desc }) {
                     <h3 className="event-title">{name}</h3>
                     <p className="event-description">{desc} </p>
                     <p className="event-author">Organizer: {created_by}</p>
+                    {/* date */}
+                    <small>{start_date}</small>
                 </div>
             </article>
         </div>
