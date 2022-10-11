@@ -49,7 +49,7 @@ class AutoEventReminder extends Command
             $users = $event->users;
     
             foreach($users as $user){
-                Mail::to($user->email)->send(new EventReminder($event));
+                Mail::to($user->email)->send(new EventReminder($event , $user));
             }
         }
          $this->updateLeadDate($events);
