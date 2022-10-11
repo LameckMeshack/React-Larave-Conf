@@ -19,6 +19,7 @@ function MyApp() {
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/addactivity" element={<AddActivity />} />
                     <Route
                         path="/events/:id"
                         element={
@@ -99,6 +100,7 @@ import Footer from "./Footer";
 import RolesDepartments from "./RolesDepartments";
 import { getRoles } from "../Store/Actions/RoleActions";
 import { getDepartments } from "../Store/Actions/DepartmentAction";
+import AddActivity from "./AddActivity";
 const container = document.getElementById("app");
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(
