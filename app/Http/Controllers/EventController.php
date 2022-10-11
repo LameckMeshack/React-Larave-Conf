@@ -12,12 +12,9 @@ class EventController extends Controller
 
     public function index()
     {
-        $events = Event::all();
-
-        // return response()->json([
-        //     'events' => $events
-        //     // $events
-        // ], 200);
+        // $events = Event::with('frequency','category','department','createdBy')->all();
+        // event with all the relationships between the tables
+        $events = Event::with('frequency','category','department','users')->get();
         return response()->json($events, 200);
     }
 
@@ -54,8 +51,8 @@ class EventController extends Controller
         $event = Event::create([
             'name' => $request->name,
             'description' => $request->description,
-            'start_date' => $request->date,
-            'lead_date' => $request->date,
+            'start_date' => $request->start_date,
+            'lead_date' => $request->lead_date,
             'venue' => $request->venue,
             'department_id' => $request->department_id,
             'category_id' => $request->category_id,
@@ -70,5 +67,14 @@ class EventController extends Controller
             // 'event' => $event,
             'message' => 'Event created successfully'
         ], 201);
+    }
+
+    public function show($id)
+    {
+        $event = Event::with('frequency','category','department','users')->find($id);
+        if(is_null($event)) {
+            return response()->json(['message' => 'Event not found'], 404);
+        }
+        return response()->json($event, 200);
     }
 }
