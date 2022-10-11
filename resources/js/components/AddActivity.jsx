@@ -9,6 +9,7 @@ function AddActivity() {
         end_date: "",
         inCharge: "",
         status: "",
+        event_id: "",
     });
     const handleSubmit = (e) => {
         e.preventDefault();
