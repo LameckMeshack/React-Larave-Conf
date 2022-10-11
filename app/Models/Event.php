@@ -24,21 +24,34 @@ class Event extends Model
 
     ];
 
+    protected $appends = [
+        'created_by'
+    ];
 
-    public function frequencies()
+
+//    event is related to one frequency, category, department and user
+    public function frequency()
     {
         return $this->belongsTo(Frequency::class);
     }
 
-    public function categories()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'event_user', 'event_id', 'user_id');
     }
 
+    public function getCreatedByAttribute()
+    {
+        return $this->users()->wherePivotNotNull('user_id')->first();
+    }
 
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }
