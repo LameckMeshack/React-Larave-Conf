@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getSingleEvent } from "../Store/Actions/EventAction";
 
 function SingleEvent() {
+    const dispatch = useDispatch();
+    //get Id from url
+    const params = useParams();
+
+    useEffect(() => {
+        dispatch(getSingleEvent(params.id));
+    }, []);
+
+    const event = useSelector((state) => state.event);
+    // console.log(event);
+    const { loading, error, event: singleEvent } = event;
+    console.log(singleEvent);
     return (
         <div className="event  bg-green-100">
             <div className="event-top">
@@ -13,21 +28,22 @@ function SingleEvent() {
                     </div>
                 </div>
                 <div className="event-top-right">
-                    <h2>The Grand Event</h2>
+                    <h2>{singleEvent?.name}</h2>
+                    <br />
                     <h3>
                         The Grand Event is a great event that will be held in
                         the Chancery , puzzles
                     </h3>
                     <p>
-                        Start Date: <span> 12/12/2020</span>
+                        Start Date: <small>{singleEvent?.start_date} </small>
                     </p>
 
                     <p>
-                        Lead Date: <span> 12/12/2020</span>
+                        Lead Date: <small> {singleEvent?.lead_date}</small>
                     </p>
-                    <p>Department2</p>
-                    <p>Category</p>
-                    <p>Location: The Chancery</p>
+                    <p>{singleEvent?.department?.name}</p>
+                    <p>{singleEvent?.category?.name}</p>
+                    <p>Location: {singleEvent?.venue}</p>
 
                     <p>Event Organizer: Rhino</p>
                     <p>Status: Ontime</p>
