@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import About from "../Pages/About";
 import Home from "../Pages/Home";
 import Protected from "./Protected";
 function MyApp() {
-    const [isSignedIn, setIsSignedIn] = useState(true);
-    // const signin = () => {
-    //     setIsSignedIn(true);
-    // };
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getRoles());
+        dispatch(getDepartments());
+    }, []);
+
     return (
         <>
             <Nav />
@@ -17,11 +19,27 @@ function MyApp() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route
+                    path="/events/:id"
+                    element={
+                        <PrivateRoute>
+                            <SingleEvent />
+                        </PrivateRoute>
+                    }
+                />
+                <Route
                     path="/addevent"
                     element={
                         <PrivateRoute>
                             <AddEvent />
                         </PrivateRoute>
+                    }
+                />
+                <Route
+                    path="/roles/departments"
+                    element={
+                        <AdminRoute>
+                            <RolesDepartments />
+                        </AdminRoute>
                     }
                 />
                 <Route path="/trial" element={<Trial />} />
@@ -52,17 +70,8 @@ function MyApp() {
                         </AdminRoute>
                     }
                 />
-                {/* </Route> */}
-
-                {/* <Route
-                path="/about"
-                element={
-                    <Protected isSignedIn={isSignedIn}>
-                        <About />
-                    </Protected>
-                }
-            /> */}
             </Routes>
+            <Footer />
         </>
     );
 }
@@ -79,10 +88,15 @@ import AddRoles from "./AddRoles";
 import EventCard from "./EventCard";
 import EventContainer from "./EventContainer";
 import store from "../Store/store";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { AuthProvider } from "../Context/AuthContext";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import SingleEvent from "./SingleEvent";
+import Footer from "./Footer";
+import RolesDepartments from "./RolesDepartments";
+import { getRoles } from "../Store/Actions/RoleActions";
+import { getDepartments } from "../Store/Actions/DepartmentAction";
 const container = document.getElementById("app");
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(
