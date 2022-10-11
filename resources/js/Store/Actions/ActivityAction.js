@@ -20,14 +20,18 @@ export const createActivity = (activity) => async (dispatch, getState) => {
             userLogin: { userInfo },
         } = getState();
 
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${userInfo.token}`,
-            },
-        };
+        // const config = {
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         Authorization: `Bearer ${userInfo.token}`,
+        //     },
+        // };
 
-        const { data } = await axios.post(`/api/activities`, activity, config);
+        const { data } = await axios.post(
+            `/api/activities`,
+            activity
+            // config
+        );
 
         dispatch({
             type: ACTIVITY_CREATE_SUCCESS,
