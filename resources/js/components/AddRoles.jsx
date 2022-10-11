@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { createRoleAction } from "../Store/Actions/RoleActions";
 import LoadingBox from "./common/LoadingBox";
 import MessageBox from "./common/MessageBox";
@@ -23,7 +24,14 @@ function AddRoles() {
     };
     return (
         <>
-            <div className="flex h-screen bg-green-700">
+            {/* back to roles */}
+            <Link
+                className="m-16 p-4 rounded bg-blue-600"
+                to="/roles/departments"
+            >
+                Back to roles
+            </Link>
+            <div className="flex py-8 bg-green-700">
                 <div className="w-full max-w-xs m-auto bg-green-100 rounded p-5">
                     {/* <login-header> */}
                     <h1 className="font-bold text-3xl text-center text-gray-900">
