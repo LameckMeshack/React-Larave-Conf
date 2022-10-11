@@ -18,7 +18,7 @@
 <body>
 
     <!-- React DOM Node -->
-    <div id="app"></div>
+    <div class="bg-green-700" id="app"></div>
     <script type="text/javascript" src="{{mix('js/app.js')}}"></script>
 
 </body>
