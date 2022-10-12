@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import { getActivities } from "../Store/Actions/ActivityAction";
 import { getCategories } from "../Store/Actions/CategoryActions";
@@ -12,12 +13,23 @@ import LoadingBox from "./common/LoadingBox";
 import MessageBox from "./common/MessageBox";
 
 function AddEvent() {
-    const user = useContext(AuthContext);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const userInfo = useSelector((state) => state.userInfo.userInfo);
+    const { user } = userInfo;
+
+    const create = useSelector((state) => state.eventCreate);
+    const {
+        loading: loadingCreate,
+        error: errorCreate,
+        success,
+        event: eventCreated,
+    } = create;
+
     const [eventDetails, setEventDetails] = useState({
         name: "",
         venue: "",
-        created_by: "4",
+        created_by: user.id,
         description: "",
         start_date: "",
         lead_date: "",
@@ -60,10 +72,14 @@ function AddEvent() {
 
             // dispatch(createEvent(eventDetails));
             dispatch(createEvent(formData));
+            //  navigate()
 
-            console.log(eventDetails);
-            // resetForm();
+            // console.log(eventDetails);
+            resetForm();
+
+            navigate("/events/" + eventCreated.id);
         }
+        // console.log("eventCreated", eventCreated);
     };
     const event = useSelector((state) => state.eventCreate);
     const { loading, error, eventInfo } = event;
@@ -79,9 +95,6 @@ function AddEvent() {
 
     const departments = useSelector((state) => state.departments);
     const { departments: departmentList } = departments;
-
-    // const user = useContext(AuthContext);
-    // console.log(user);
 
     const resetForm = () =>
         setEventDetails({
@@ -105,7 +118,7 @@ function AddEvent() {
         dispatch(getCategories());
     }, [eventInfo]);
     // console.log(departments.departments);
-    // console.log(roles);
+
     return (
         <div className="min-w-screen min-h-screen bg-green-700 flex items-center justify-center px-5 py-5">
             <div
@@ -115,15 +128,20 @@ function AddEvent() {
                 <div className="w-full">
                     <div className="w-full py-10 px-5 md:px-10">
                         <div className="text-center mb-10">
-                            <h1 className="font-bold text-3xl text-gray-900">
-                                ADD EVENT
-                            </h1>
                             <img
                                 className="w-20 mx-auto mb-5"
                                 src="https://www.cytonn.com/assets/img/logos/cytonn_logo.svg"
                             />
+                            <h1 className="font-bold text-3xl text-gray-900">
+                                ADD EVENT
+                            </h1>
+                            {success && (
+                                <MessageBox variant="success">
+                                    Event Created Successfully
+                                </MessageBox>
+                            )}
                         </div>
-                        {loading && <LoadingBox></LoadingBox>}
+                        {/* {loading && <LoadingBox></LoadingBox>} */}
                         {error && (
                             <MessageBox variant="danger">{error}</MessageBox>
                         )}
