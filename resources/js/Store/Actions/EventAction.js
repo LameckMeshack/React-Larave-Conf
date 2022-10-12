@@ -13,6 +13,10 @@ import {
     EVENT_DETAILS_SUCCESS,
     EVENT_DETAILS_FAIL,
     EVENT_DETAILS_REQUEST,
+    EVENT_UPDATE_REQUEST,
+    EVENT_BY_DEPARTMENT_REQUEST,
+    EVENT_BY_DEPARTMENT_SUCCESS,
+    EVENT_BY_DEPARTMENT_FAIL,
 } from "../Constants/EventConstants";
 
 export const createEvent = (eventDetails) => async (dispatch, getState) => {
@@ -20,7 +24,10 @@ export const createEvent = (eventDetails) => async (dispatch, getState) => {
     try {
         const { data } = await axios.post("/api/events", eventDetails);
 
-        dispatch({ type: EVENT_CREATE_SUCCESS, payload: data.event });
+        dispatch({
+            type: EVENT_CREATE_SUCCESS,
+            payload: data,
+        });
     } catch (error) {
         dispatch({
             type: EVENT_CREATE_FAIL,
@@ -58,6 +65,22 @@ export const getSingleEvent = (id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: EVENT_DETAILS_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};
+
+export const getEventByDepartment = (department) => async (dispatch) => {
+    dispatch({ type: EVENT_BY_DEPARTMENT_REQUEST });
+    try {
+        const { data } = await axios.get(`/api/events/dept/${department}`);
+        dispatch({ type: EVENT_BY_DEPARTMENT_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({
+            type: EVENT_BY_DEPARTMENT_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message
