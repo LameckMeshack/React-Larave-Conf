@@ -44,6 +44,11 @@ function AddDepartment() {
                 /> */}
                     {loading && <LoadingBox></LoadingBox>}
                     {error && <MessageBox variant="danger">{error}</MessageBox>}
+                    {success && (
+                        <MessageBox variant="success">
+                            Department Created Successfully
+                        </MessageBox>
+                    )}
                     <form className="w-full" onSubmit={handleSubmit}>
                         <div className=" w-full   mb-5">
                             <label
