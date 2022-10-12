@@ -88,6 +88,10 @@ function SingleEvent() {
                                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                 12/12/2020
                                             </td>
+                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                {/* checkbox */}
+                                                <input type="checkbox" />
+                                            </td>
                                         </tr>
                                         <tr className="border-b bg-orange-500 border-red-200">
                                             <td className="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
@@ -99,6 +103,10 @@ function SingleEvent() {
                                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                 12/12/2020
                                             </td>
+                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                {/* checkbox */}
+                                                <input type="checkbox" />
+                                            </td>
                                         </tr>
                                         <tr className="border-b bg-red-500 border-yellow-200">
                                             <td className="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
@@ -109,6 +117,13 @@ function SingleEvent() {
                                             </td>
                                             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                 12/12/2020
+                                            </td>
+                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                {/* checkbox */}
+                                                <input
+                                                    type="checkbox"
+                                                    disabled
+                                                />
                                             </td>
                                         </tr>
                                     </tbody>
