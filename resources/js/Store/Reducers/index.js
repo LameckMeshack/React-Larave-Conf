@@ -1,6 +1,10 @@
 import { combineReducers } from "redux";
 import { userSigninReducer, userSignoutReducer } from "./UserReducers";
-import { eventCreateReducer, eventDetailsReducer } from "./EventReducers";
+import {
+    eventCreateReducer,
+    eventDepartmentReducer,
+    eventDetailsReducer,
+} from "./EventReducers";
 import {
     departmentCreateReducer,
     depertmentListReducer,
@@ -21,6 +25,7 @@ export const rootReducer = combineReducers({
     //event
     eventCreate: eventCreateReducer,
     eventList: eventListReducer,
+    eventDept: eventDepartmentReducer,
     event: eventDetailsReducer,
     //department
     departmentCreate: departmentCreateReducer,

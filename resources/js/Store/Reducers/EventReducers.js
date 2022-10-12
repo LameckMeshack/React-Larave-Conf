@@ -9,6 +9,9 @@ import {
     EVENT_DETAILS_SUCCESS,
     EVENT_DETAILS_FAIL,
     EVENT_DETAILS_REQUEST,
+    EVENT_BY_DEPARTMENT_REQUEST,
+    EVENT_BY_DEPARTMENT_SUCCESS,
+    EVENT_BY_DEPARTMENT_FAIL,
 } from "../Constants/EventConstants";
 
 //event reducers
@@ -49,6 +52,20 @@ export const eventDetailsReducer = (state = { event: {} }, action) => {
         case EVENT_DETAILS_SUCCESS:
             return { loading: false, event: action.payload };
         case EVENT_DETAILS_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+// get event according to department
+export const eventDepartmentReducer = (state = { envts: [] }, action) => {
+    switch (action.type) {
+        case EVENT_BY_DEPARTMENT_REQUEST:
+            return { loading: true };
+        case EVENT_BY_DEPARTMENT_SUCCESS:
+            return { loading: false, envts: action.payload };
+        case EVENT_BY_DEPARTMENT_FAIL:
             return { loading: false, error: action.payload };
         default:
             return state;
