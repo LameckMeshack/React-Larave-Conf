@@ -9564,6 +9564,7 @@ var getDepartments = function getDepartments() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createEvent": () => (/* binding */ createEvent),
+/* harmony export */   "getEventByDepartment": () => (/* binding */ getEventByDepartment),
 /* harmony export */   "getEvents": () => (/* binding */ getEvents),
 /* harmony export */   "getSingleEvent": () => (/* binding */ getSingleEvent)
 /* harmony export */ });
@@ -9606,7 +9607,7 @@ var createEvent = function createEvent(eventDetails) {
               data = _yield$axios$post.data;
               dispatch({
                 type: _Constants_EventConstants__WEBPACK_IMPORTED_MODULE_2__.EVENT_CREATE_SUCCESS,
-                payload: data.event
+                payload: data
               });
               _context.next = 12;
               break;
@@ -9725,6 +9726,53 @@ var getSingleEvent = function getSingleEvent(id) {
 
     return function (_x4) {
       return _ref3.apply(this, arguments);
+    };
+  }();
+};
+var getEventByDepartment = function getEventByDepartment(department) {
+  return /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(dispatch) {
+      var _yield$axios$get3, data;
+
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              dispatch({
+                type: _Constants_EventConstants__WEBPACK_IMPORTED_MODULE_2__.EVENT_BY_DEPARTMENT_REQUEST
+              });
+              _context4.prev = 1;
+              _context4.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/events/dept/".concat(department));
+
+            case 4:
+              _yield$axios$get3 = _context4.sent;
+              data = _yield$axios$get3.data;
+              dispatch({
+                type: _Constants_EventConstants__WEBPACK_IMPORTED_MODULE_2__.EVENT_BY_DEPARTMENT_SUCCESS,
+                payload: data
+              });
+              _context4.next = 12;
+              break;
+
+            case 9:
+              _context4.prev = 9;
+              _context4.t0 = _context4["catch"](1);
+              dispatch({
+                type: _Constants_EventConstants__WEBPACK_IMPORTED_MODULE_2__.EVENT_BY_DEPARTMENT_FAIL,
+                payload: _context4.t0.response && _context4.t0.response.data.message ? _context4.t0.response.data.message : _context4.t0.message
+              });
+
+            case 12:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[1, 9]]);
+    }));
+
+    return function (_x5) {
+      return _ref4.apply(this, arguments);
     };
   }();
 };
@@ -10233,6 +10281,9 @@ var DEPARTMENT_LIST_FAIL = "DEPARTMENT_LIST_FAIL";
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EVENT_BY_DEPARTMENT_FAIL": () => (/* binding */ EVENT_BY_DEPARTMENT_FAIL),
+/* harmony export */   "EVENT_BY_DEPARTMENT_REQUEST": () => (/* binding */ EVENT_BY_DEPARTMENT_REQUEST),
+/* harmony export */   "EVENT_BY_DEPARTMENT_SUCCESS": () => (/* binding */ EVENT_BY_DEPARTMENT_SUCCESS),
 /* harmony export */   "EVENT_CREATE_FAIL": () => (/* binding */ EVENT_CREATE_FAIL),
 /* harmony export */   "EVENT_CREATE_REQUEST": () => (/* binding */ EVENT_CREATE_REQUEST),
 /* harmony export */   "EVENT_CREATE_RESET": () => (/* binding */ EVENT_CREATE_RESET),
@@ -10266,7 +10317,11 @@ var EVENT_DETAILS_FAIL = "EVENT_DETAILS_FAIL";
 var EVENT_UPDATE_REQUEST = "EVENT_UPDATE_REQUEST";
 var EVENT_UPDATE_SUCCESS = "EVENT_UPDATE_SUCCESS";
 var EVENT_UPDATE_FAIL = "EVENT_UPDATE_FAIL";
-var EVENT_UPDATE_RESET = "EVENT_UPDATE_RESET";
+var EVENT_UPDATE_RESET = "EVENT_UPDATE_RESET"; // Event by department
+
+var EVENT_BY_DEPARTMENT_REQUEST = "EVENT_BY_DEPARTMENT_REQUEST";
+var EVENT_BY_DEPARTMENT_SUCCESS = "EVENT_BY_DEPARTMENT_SUCCESS";
+var EVENT_BY_DEPARTMENT_FAIL = "EVENT_BY_DEPARTMENT_FAIL";
 var EVENT_DELETE_REQUEST = "EVENT_DELETE_REQUEST";
 var EVENT_DELETE_SUCCESS = "EVENT_DELETE_SUCCESS";
 var EVENT_DELETE_FAIL = "EVENT_DELETE_FAIL";
@@ -10586,6 +10641,7 @@ var depertmentListReducer = function depertmentListReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "eventCreateReducer": () => (/* binding */ eventCreateReducer),
+/* harmony export */   "eventDepartmentReducer": () => (/* binding */ eventDepartmentReducer),
 /* harmony export */   "eventDetailsReducer": () => (/* binding */ eventDetailsReducer),
 /* harmony export */   "eventListReducer": () => (/* binding */ eventListReducer)
 /* harmony export */ });
@@ -10671,6 +10727,35 @@ var eventDetailsReducer = function eventDetailsReducer() {
       };
 
     case _Constants_EventConstants__WEBPACK_IMPORTED_MODULE_0__.EVENT_DETAILS_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      };
+
+    default:
+      return state;
+  }
+}; // get event according to department
+
+var eventDepartmentReducer = function eventDepartmentReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    envts: []
+  };
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _Constants_EventConstants__WEBPACK_IMPORTED_MODULE_0__.EVENT_BY_DEPARTMENT_REQUEST:
+      return {
+        loading: true
+      };
+
+    case _Constants_EventConstants__WEBPACK_IMPORTED_MODULE_0__.EVENT_BY_DEPARTMENT_SUCCESS:
+      return {
+        loading: false,
+        envts: action.payload
+      };
+
+    case _Constants_EventConstants__WEBPACK_IMPORTED_MODULE_0__.EVENT_BY_DEPARTMENT_FAIL:
       return {
         loading: false,
         error: action.payload
@@ -10931,6 +11016,7 @@ var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_7__.combineReducers)({
   //event
   eventCreate: _EventReducers__WEBPACK_IMPORTED_MODULE_1__.eventCreateReducer,
   eventList: _EventReducers__WEBPACK_IMPORTED_MODULE_1__.eventListReducer,
+  eventDept: _EventReducers__WEBPACK_IMPORTED_MODULE_1__.eventDepartmentReducer,
   event: _EventReducers__WEBPACK_IMPORTED_MODULE_1__.eventDetailsReducer,
   //department
   departmentCreate: _DepartmentReducers__WEBPACK_IMPORTED_MODULE_2__.departmentCreateReducer,
@@ -11333,6 +11419,9 @@ function AddDepartment() {
         }), loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_common_LoadingBox__WEBPACK_IMPORTED_MODULE_3__["default"], {}), error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_common_MessageBox__WEBPACK_IMPORTED_MODULE_4__["default"], {
           variant: "danger",
           children: error
+        }), success && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_common_MessageBox__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          variant: "success",
+          children: "Department Created Successfully"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
           className: "w-full",
           onSubmit: handleSubmit,
@@ -11389,6 +11478,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
 /* harmony import */ var _Context_AuthContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Context/AuthContext */ "./resources/js/Context/AuthContext.js");
 /* harmony import */ var _Store_Actions_ActivityAction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Store/Actions/ActivityAction */ "./resources/js/Store/Actions/ActivityAction.js");
 /* harmony import */ var _Store_Actions_CategoryActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Store/Actions/CategoryActions */ "./resources/js/Store/Actions/CategoryActions.js");
@@ -11432,16 +11522,28 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function AddEvent() {
   var _useState3, _jsx2;
 
-  var user = (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(_Context_AuthContext__WEBPACK_IMPORTED_MODULE_3__.AuthContext);
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_13__.useNavigate)();
+  var userInfo = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+    return state.userInfo.userInfo;
+  });
+  var user = userInfo.user;
+  var create = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+    return state.eventCreate;
+  });
+  var loadingCreate = create.loading,
+      errorCreate = create.error,
+      success = create.success,
+      eventCreated = create.event;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)((_useState3 = {
     name: "",
     venue: "",
-    created_by: "4",
+    created_by: user.id,
     description: "",
     start_date: "",
     lead_date: "",
@@ -11472,9 +11574,13 @@ function AddEvent() {
       formData.append("frequency_id", eventDetails.frequency_id);
       formData.append("poster", eventDetails.poster); // dispatch(createEvent(eventDetails));
 
-      dispatch((0,_Store_Actions_EventAction__WEBPACK_IMPORTED_MODULE_7__.createEvent)(formData));
-      console.log(eventDetails); // resetForm();
-    }
+      dispatch((0,_Store_Actions_EventAction__WEBPACK_IMPORTED_MODULE_7__.createEvent)(formData)); //  navigate()
+      // console.log(eventDetails);
+
+      resetForm();
+      navigate("/events/" + eventCreated.id);
+    } // console.log("eventCreated", eventCreated);
+
   };
 
   var event = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
@@ -11498,8 +11604,7 @@ function AddEvent() {
   var departments = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.departments;
   });
-  var departmentList = departments.departments; // const user = useContext(AuthContext);
-  // console.log(user);
+  var departmentList = departments.departments;
 
   var resetForm = function resetForm() {
     return setEventDetails({
@@ -11523,7 +11628,6 @@ function AddEvent() {
     dispatch((0,_Store_Actions_FrequencyAction__WEBPACK_IMPORTED_MODULE_8__.getFrequencies)());
     dispatch((0,_Store_Actions_CategoryActions__WEBPACK_IMPORTED_MODULE_5__.getCategories)());
   }, [eventInfo]); // console.log(departments.departments);
-  // console.log(roles);
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
     className: "min-w-screen min-h-screen bg-green-700 flex items-center justify-center px-5 py-5",
@@ -11538,14 +11642,17 @@ function AddEvent() {
           className: "w-full py-10 px-5 md:px-10",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
             className: "text-center mb-10",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("h1", {
-              className: "font-bold text-3xl text-gray-900",
-              children: "ADD EVENT"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("img", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("img", {
               className: "w-20 mx-auto mb-5",
               src: "https://www.cytonn.com/assets/img/logos/cytonn_logo.svg"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("h1", {
+              className: "font-bold text-3xl text-gray-900",
+              children: "ADD EVENT"
+            }), success && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_common_MessageBox__WEBPACK_IMPORTED_MODULE_11__["default"], {
+              variant: "success",
+              children: "Event Created Successfully"
             })]
-          }), loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_common_LoadingBox__WEBPACK_IMPORTED_MODULE_10__["default"], {}), error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_common_MessageBox__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          }), error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_common_MessageBox__WEBPACK_IMPORTED_MODULE_11__["default"], {
             variant: "danger",
             children: error
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("form", {
@@ -11927,6 +12034,9 @@ function AddRoles() {
         }), loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_common_LoadingBox__WEBPACK_IMPORTED_MODULE_3__["default"], {}), error && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_common_MessageBox__WEBPACK_IMPORTED_MODULE_4__["default"], {
           variant: "danger",
           children: error
+        }), success && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_common_MessageBox__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          variant: "success",
+          children: "Role Created Successfully"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
           className: "w-full",
           onSubmit: handleSubmit,
@@ -12096,24 +12206,37 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function EventContainer() {
-  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)(); // const  evnts =
+
   var eventList = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.eventList;
   });
   var loading = eventList.loading,
       error = eventList.error,
-      events = eventList.events; // destructure events
-  // const { events: envt } = events;
-
+      events = eventList.events;
   console.log(events);
-  var user = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+  var deptEvent = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+    return state.eventDept;
+  });
+  var loadingDept = deptEvent.loading,
+      errorDept = deptEvent.error,
+      evnts = deptEvent.evnts;
+  console.log("departments", evnts);
+  var userInfo = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.userInfo.userInfo;
   });
+  var user = userInfo.user;
   console.log(user);
+  var list = [];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    dispatch((0,_Store_Actions_EventAction__WEBPACK_IMPORTED_MODULE_3__.getEvents)());
-  }, []);
-  console.log(events);
+    if (user.isAdmin) {
+      dispatch((0,_Store_Actions_EventAction__WEBPACK_IMPORTED_MODULE_3__.getEvents)());
+    } else {
+      dispatch((0,_Store_Actions_EventAction__WEBPACK_IMPORTED_MODULE_3__.getEventByDepartment)(user.department_id));
+      console.log("first");
+    }
+  }, []); // console.log(events);
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     className: " events-container",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
@@ -12124,9 +12247,9 @@ function EventContainer() {
         className: "btn bg-blue-700 btn-primary create-event-btn",
         children: "Create Event"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "event-cards",
-      children: events && events.length > 0 ? events.map(function (event) {
+      children: [events && events.length > 0 ? events.map(function (event) {
         var _event$created_by;
 
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
@@ -12142,7 +12265,21 @@ function EventContainer() {
         }, event.id);
       }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
         children: "No Events"
-      })
+      }), evnts && evnts.length > 0 ? evnts.map(function (event) {
+        var _event$created_by2;
+
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+          to: "/events/".concat(event.id),
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_EventCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            desc: event.description,
+            name: event.name,
+            id: event.id,
+            category: event.category.name,
+            created_by: (_event$created_by2 = event.created_by) === null || _event$created_by2 === void 0 ? void 0 : _event$created_by2.name,
+            start_date: event.start_date
+          })
+        }, event.id);
+      }) : null]
     })]
   });
 }
