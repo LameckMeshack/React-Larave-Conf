@@ -18,6 +18,13 @@ class EventController extends Controller
         return response()->json($events, 200);
     }
 
+    //filter events by department_id
+    public function filterByDepartment($department_id)
+    {
+        $events = Event::with('frequency','category','department','users')->where('department_id', $department_id)->get();
+        return response()->json($events, 200);
+    }
+
     public function store(Request $request)
     {
         // dd(request()->all());

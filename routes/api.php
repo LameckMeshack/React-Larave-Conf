@@ -50,6 +50,7 @@ Route::group(['middleware' => 'api'], function($router) {
 
 Route::group(['middleware' => 'api'], function($router) {
     Route::get('/events', [EventController::class, 'index']);
+    Route::get('/events/dept/{department_id}', [EventController::class, 'filterByDepartment']);
     Route::get('/events/{id}', [EventController::class, 'show']);
     Route::post('/events', [EventController::class, 'store']);
     Route::put('/events/{id}', [EventController::class, 'update']);
