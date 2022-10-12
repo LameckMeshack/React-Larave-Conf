@@ -12876,6 +12876,11 @@ function SingleEvent() {
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                       className: "text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap",
                       children: "12/12/2020"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                      className: "text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                        type: "checkbox"
+                      })
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
                     className: "border-b bg-orange-500 border-red-200",
@@ -12888,6 +12893,11 @@ function SingleEvent() {
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                       className: "text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap",
                       children: "12/12/2020"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                      className: "text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                        type: "checkbox"
+                      })
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
                     className: "border-b bg-red-500 border-yellow-200",
@@ -12900,6 +12910,12 @@ function SingleEvent() {
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                       className: "text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap",
                       children: "12/12/2020"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                      className: "text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                        type: "checkbox",
+                        disabled: true
+                      })
                     })]
                   })]
                 })]
