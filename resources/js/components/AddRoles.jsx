@@ -19,6 +19,7 @@ function AddRoles() {
             alert("Please enter a role");
         } else {
             dispatch(createRoleAction(role));
+
             setRole("");
         }
     };
@@ -43,6 +44,11 @@ function AddRoles() {
                     />
                     {loading && <LoadingBox></LoadingBox>}
                     {error && <MessageBox variant="danger">{error}</MessageBox>}
+                    {success && (
+                        <MessageBox variant="success">
+                            Role Created Successfully
+                        </MessageBox>
+                    )}
                     <form className="w-full" onSubmit={handleSubmit}>
                         <div className=" w-full   mb-5">
                             <label
