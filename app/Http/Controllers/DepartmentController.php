@@ -35,7 +35,7 @@ class DepartmentController extends Controller
         ]);
 
         return response()->json([
-            // 'department' => $department,
+            'department' => $department,
             'message' => 'Department created successfully'
         ], 201);
     }
