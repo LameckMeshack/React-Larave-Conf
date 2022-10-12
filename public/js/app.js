@@ -12416,6 +12416,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Nav = function Nav() {
+  var _user$user;
+
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
 
@@ -12464,13 +12466,21 @@ var Nav = function Nav() {
     // localStorage.clear();
     dispatch((0,_Store_Actions_UserAction__WEBPACK_IMPORTED_MODULE_2__.signout)());
     navigate("/login");
-  };
+  }; // const { user } = useSelector((state) => state.userInfo.userInfo);
+  //
 
-  var user = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
-    return state.userInfo.userInfo;
+
+  var userSignin = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
+    return state.userInfo;
   });
+  var loading = userSignin.loading,
+      error = userSignin.error,
+      user = userSignin.userInfo; // console.log("user");
+  // console.log(user?.user?.isAdmin);
+
+  var isAdmin = user === null || user === void 0 ? void 0 : (_user$user = user.user) === null || _user$user === void 0 ? void 0 : _user$user.isAdmin;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    className: "nav",
+    className: "nav ",
     children: [isResponsiveclose === true ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
         className: "menubar__button",
@@ -12489,40 +12499,43 @@ var Nav = function Nav() {
         onClick: toggleClass,
         children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_icons_fi__WEBPACK_IMPORTED_MODULE_6__.FiAlignRight, {}), " "]
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("ul", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
       className: boxClass.join(" "),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.NavLink, {
-          onClick: toggleClass,
-          className: function className(_ref) {
-            var isActive = _ref.isActive;
-            return isActive ? "active" : "";
-          },
-          to: "/",
-          children: [" ", "Home", " "]
-        })
-      }), user ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+      children: user ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.NavLink, {
             onClick: toggleClass,
-            className: function className(_ref2) {
-              var isActive = _ref2.isActive;
+            className: function className(_ref) {
+              var isActive = _ref.isActive;
               return isActive ? "active" : "";
             },
             to: "/events",
             children: [" ", "Events", " "]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.NavLink, {
-            onClick: toggleClass,
-            className: function className(_ref3) {
-              var isActive = _ref3.isActive;
-              return isActive ? "active" : "";
-            },
-            to: "/roles/departments",
-            children: [" ", "Roles and Departments", " "]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+        }), isAdmin ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+            onClick: toggleSubmenu,
+            className: "sub__menus__arrows",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.NavLink, {
+              className: function className(_ref2) {
+                var isActive = _ref2.isActive;
+                return isActive ? "active" : "";
+              },
+              to: "/register",
+              children: "Add Users"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.NavLink, {
+              onClick: toggleClass,
+              className: function className(_ref3) {
+                var isActive = _ref3.isActive;
+                return isActive ? "active" : "";
+              },
+              to: "/roles/departments",
+              children: [" ", "Roles and Departments", " "]
+            })
+          })]
+        }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
             onClick: handleSignout // className={({ isActive }) => (isActive ? "active" : "")}
             ,
@@ -12552,19 +12565,8 @@ var Nav = function Nav() {
             to: "/login",
             children: "Login"
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
-          onClick: toggleSubmenu,
-          className: "sub__menus__arrows",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.NavLink, {
-            className: function className(_ref6) {
-              var isActive = _ref6.isActive;
-              return isActive ? "active" : "";
-            },
-            to: "/register",
-            children: "Register"
-          })
         })]
-      })]
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Outlet, {})]
   });
 };
