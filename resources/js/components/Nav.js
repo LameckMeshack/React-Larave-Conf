@@ -38,10 +38,16 @@ const Nav = () => {
         dispatch(signout());
         navigate("/login");
     };
-    const user = useSelector((state) => state.userInfo.userInfo);
+    // const { user } = useSelector((state) => state.userInfo.userInfo);
+    //
+    const userSignin = useSelector((state) => state.userInfo);
+    const { loading, error, userInfo: user } = userSignin;
+    // console.log("user");
+    // console.log(user?.user?.isAdmin);
+    const isAdmin = user?.user?.isAdmin;
 
     return (
-        <div className="nav">
+        <div className="nav ">
             {isResponsiveclose === true ? (
                 <>
                     <span
@@ -66,17 +72,6 @@ const Nav = () => {
                 </>
             )}
             <ul className={boxClass.join(" ")}>
-                <li>
-                    <NavLink
-                        onClick={toggleClass}
-                        className={({ isActive }) => (isActive ? "active" : "")}
-                        to="/"
-                    >
-                        {" "}
-                        Home{" "}
-                    </NavLink>
-                </li>
-
                 {user ? (
                     <>
                         <li>
@@ -91,18 +86,38 @@ const Nav = () => {
                                 Events{" "}
                             </NavLink>
                         </li>
-                        <li>
-                            <NavLink
-                                onClick={toggleClass}
-                                className={({ isActive }) =>
-                                    isActive ? "active" : ""
-                                }
-                                to="/roles/departments"
-                            >
-                                {" "}
-                                Roles and Departments{" "}
-                            </NavLink>
-                        </li>
+
+                        {isAdmin ? (
+                            <>
+                                <li
+                                    onClick={toggleSubmenu}
+                                    className="sub__menus__arrows"
+                                >
+                                    <NavLink
+                                        className={({ isActive }) =>
+                                            isActive ? "active" : ""
+                                        }
+                                        to="/register"
+                                    >
+                                        Add Users
+                                    </NavLink>
+                                </li>
+
+                                <li>
+                                    <NavLink
+                                        onClick={toggleClass}
+                                        className={({ isActive }) =>
+                                            isActive ? "active" : ""
+                                        }
+                                        to="/roles/departments"
+                                    >
+                                        {" "}
+                                        Roles and Departments{" "}
+                                    </NavLink>
+                                </li>
+                            </>
+                        ) : null}
+
                         <li>
                             <button
                                 onClick={handleSignout}
@@ -137,19 +152,6 @@ const Nav = () => {
                                 to="/login"
                             >
                                 Login
-                            </NavLink>
-                        </li>
-                        <li
-                            onClick={toggleSubmenu}
-                            className="sub__menus__arrows"
-                        >
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive ? "active" : ""
-                                }
-                                to="/register"
-                            >
-                                Register
                             </NavLink>
                         </li>
                     </>
