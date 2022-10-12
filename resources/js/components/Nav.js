@@ -72,6 +72,15 @@ const Nav = () => {
                 </>
             )}
             <ul className={boxClass.join(" ")}>
+                <li>
+                    <NavLink
+                        onClick={toggleClass}
+                        className={({ isActive }) => (isActive ? "active" : "")}
+                        to="/"
+                    >
+                        Home
+                    </NavLink>
+                </li>
                 {user ? (
                     <>
                         <li>
@@ -132,18 +141,6 @@ const Nav = () => {
                         <li>
                             <NavLink
                                 onClick={toggleClass}
-                                className={({ isActive }) =>
-                                    isActive ? "active" : ""
-                                }
-                                to="/"
-                            >
-                                Home
-                            </NavLink>
-                        </li>
-
-                        <li>
-                            <NavLink
-                                onClick={toggleClass}
                                 style={({ isActive }) => {
                                     return {
                                         color: isActive ? "green" : "",
@@ -157,11 +154,7 @@ const Nav = () => {
                     </>
                 )}
             </ul>
-            {/* <ul className={boxClass.join(" ")>
-                
 
-              
-                  </ul> */}
             <Outlet />
         </div>
     );
