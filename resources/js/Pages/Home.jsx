@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import image from "../../images/demo.png";
 function Home() {
     const user = useSelector((state) => state.userInfo);
 
     return (
-        <section className="dark:bg-gray-800 dark:text-gray-100">
+        <section className="dark:bg-gray-800 dark:text-gray-100 h-screen">
             <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
                 <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
                     <h1 className="text-5xl font-bold leading-none sm:text-6xl">
@@ -42,7 +43,8 @@ function Home() {
                 </div>
                 <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
                     <img
-                        src="assets/svg/Business_SVG.svg"
+                        // src="assets/svg/Business_SVG.svg"
+                        src={image}
                         alt=""
                         className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128"
                     />
