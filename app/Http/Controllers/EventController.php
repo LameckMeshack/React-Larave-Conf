@@ -30,7 +30,7 @@ class EventController extends Controller
         // dd(request()->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:2|max:100',
-            'description' => 'required|string|min:2|max:100',
+            'description' => 'required|string|min:2|max:1000',
             'start_date' => 'required|date',
             'lead_date' => 'required|date',
             'venue' => 'required|string|min:2|max:100',
