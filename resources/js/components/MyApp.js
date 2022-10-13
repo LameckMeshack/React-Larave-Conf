@@ -14,7 +14,7 @@ function MyApp() {
     return (
         <>
             <Nav />
-            <div className="h-screen">
+            <div className="min-h-screen">
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
