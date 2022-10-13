@@ -11,13 +11,19 @@ $shadow: rgba(0, 0, 0, 0.2);
 
 .event-card {
     display: flex;
-    margin: 10px;
+    margin: 10px auto;
+    max-width: 60%;
     flex-direction: row;
     background: $white;
     box-shadow: 0 0.1875rem 1.5rem $shadow;
     border-radius: 0.375rem;
     overflow: hidden;
-    // max-width: 30%;
+    // max-width: 30%
+    img {
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+    }
 }
 
 .card-link {
