@@ -11575,10 +11575,8 @@ function AddEvent() {
       formData.append("poster", eventDetails.poster); // dispatch(createEvent(eventDetails));
 
       dispatch((0,_Store_Actions_EventAction__WEBPACK_IMPORTED_MODULE_7__.createEvent)(formData)); //  navigate()
-      // console.log(eventDetails);
 
       resetForm();
-      navigate("/events/" + eventCreated.id);
     } // console.log("eventCreated", eventCreated);
 
   };
@@ -11621,6 +11619,11 @@ function AddEvent() {
     });
   };
 
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    if (eventCreated) {
+      navigate("/events/".concat(eventCreated.id));
+    }
+  }, [eventCreated]);
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useLayoutEffect)(function () {
     dispatch((0,_Store_Actions_RoleActions__WEBPACK_IMPORTED_MODULE_9__.getRoles)());
     dispatch((0,_Store_Actions_DepartmentAction__WEBPACK_IMPORTED_MODULE_6__.getDepartments)());
@@ -12145,9 +12148,9 @@ function EventCard(_ref) {
       start_date = _ref.start_date,
       poster = _ref.poster;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "card-link",
+    className: "card-link bg-green-700 ",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("article", {
-      className: "event-card",
+      className: "event-card bg-green-100 ",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
         className: "event-image" // src="https://picsum.photos/300/200"
         ,
@@ -12950,30 +12953,37 @@ function SingleEvent() {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "event-image",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
-            className: "event-image",
-            src: "https://picsum.photos/300/200"
+            className: "event-image" // src="https://picsum.photos/300/200"
+            ,
+            src: "../../uploads/posters/".concat(singleEvent === null || singleEvent === void 0 ? void 0 : singleEvent.poster)
           })
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "event-top-right",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
           children: singleEvent === null || singleEvent === void 0 ? void 0 : singleEvent.name
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
-          children: "The Grand Event is a great event that will be held in the Chancery , puzzles"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-          children: ["Start Date: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("small", {
-            children: [singleEvent === null || singleEvent === void 0 ? void 0 : singleEvent.start_date, " "]
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-          children: ["Lead Date: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("small", {
-            children: [" ", singleEvent === null || singleEvent === void 0 ? void 0 : singleEvent.lead_date]
-          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+          children: [singleEvent === null || singleEvent === void 0 ? void 0 : singleEvent.description, " "]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-          children: singleEvent === null || singleEvent === void 0 ? void 0 : (_singleEvent$departme = singleEvent.department) === null || _singleEvent$departme === void 0 ? void 0 : _singleEvent$departme.name
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("small", {
+            children: [" Start Date: ", singleEvent === null || singleEvent === void 0 ? void 0 : singleEvent.start_date, " "]
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-          children: singleEvent === null || singleEvent === void 0 ? void 0 : (_singleEvent$category = singleEvent.category) === null || _singleEvent$category === void 0 ? void 0 : _singleEvent$category.name
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("small", {
+            children: [" Lead Date: ", singleEvent === null || singleEvent === void 0 ? void 0 : singleEvent.lead_date]
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-          children: ["Location: ", singleEvent === null || singleEvent === void 0 ? void 0 : singleEvent.venue]
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("small", {
+            children: [" ", singleEvent === null || singleEvent === void 0 ? void 0 : (_singleEvent$departme = singleEvent.department) === null || _singleEvent$departme === void 0 ? void 0 : _singleEvent$departme.name]
+          }), " "]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("small", {
+            children: [" ", singleEvent === null || singleEvent === void 0 ? void 0 : (_singleEvent$category = singleEvent.category) === null || _singleEvent$category === void 0 ? void 0 : _singleEvent$category.name]
+          }), " "]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("small", {
+            children: [" Location: ", singleEvent === null || singleEvent === void 0 ? void 0 : singleEvent.venue]
+          }), " "]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
           children: "Event Organizer: Rhino"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
