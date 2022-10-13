@@ -9,6 +9,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\FrequencyController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +76,12 @@ Route::group(['middleware' => 'api'], function($router) {
 Route::group(['middleware' => 'api'], function($router) {
     Route::get('/activities', [ActivityController::class, 'index']);
     Route::post('/activities', [ActivityController::class, 'store']);
-    Route::put('/activities/{id}', [ActivityController::class, 'update']);
-    Route::delete('/activities/{id}', [ActivityController::class, 'destroy']);
+    Route::get('/event/activities/{id}', [ActivityController::class, 'getByEventId']);
+    // Route::put('/activities/{id}', [ActivityController::class, 'update']);
+    // Route::delete('/activities/{id}', [ActivityController::class, 'destroy']);
+});
+
+
+Route::group(['middleware' => 'api'], function($router) {
+    Route::get('/users', [UsersController::class, 'index']);
 });
