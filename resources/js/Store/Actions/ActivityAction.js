@@ -16,9 +16,9 @@ export const createActivity = (activity) => async (dispatch, getState) => {
             type: ACTIVITY_CREATE_REQUEST,
         });
 
-        const {
-            userLogin: { userInfo },
-        } = getState();
+        // const {
+        //     userLogin: { userInfo },
+        // } = getState();
 
         // const config = {
         //     headers: {
