@@ -11575,8 +11575,8 @@ function AddEvent() {
       formData.append("poster", eventDetails.poster); // dispatch(createEvent(eventDetails));
 
       dispatch((0,_Store_Actions_EventAction__WEBPACK_IMPORTED_MODULE_7__.createEvent)(formData)); //  navigate()
+      // console.log(eventDetails);
 
-      console.log(eventDetails);
       resetForm();
       navigate("/events/" + eventCreated.id);
     } // console.log("eventCreated", eventCreated);
@@ -11629,7 +11629,6 @@ function AddEvent() {
     dispatch((0,_Store_Actions_CategoryActions__WEBPACK_IMPORTED_MODULE_5__.getCategories)());
   }, [eventInfo]); // console.log(departments.departments);
 
-  console.log(user);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
     className: "min-w-screen min-h-screen bg-green-700 flex items-center justify-center px-5 py-5",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
