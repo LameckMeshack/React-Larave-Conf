@@ -7,15 +7,21 @@ function SingleEvent() {
     const dispatch = useDispatch();
     //get Id from url
     const params = useParams();
+    const user = useSelector((state) => state.userInfo);
+    const { userInfo } = user;
+    // console.log("seee", userInfo?.user?.id);
 
     useEffect(() => {
         dispatch(getSingleEvent(params.id));
+        //set id in the local storage
+        localStorage.setItem("event_id", params.id);
     }, []);
 
     const event = useSelector((state) => state.event);
     // console.log(event);
     const { loading, error, event: singleEvent } = event;
-    console.log(singleEvent);
+    // console.log(singleEvent);
+    const checkRead = () => {};
     return (
         <div className="event  bg-green-100">
             <div className="event-top">
@@ -64,71 +70,68 @@ function SingleEvent() {
                                                 scope="col"
                                                 className="text-sm font-medium text-gray-900 px-6 py-4"
                                             >
+                                                Received
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                className="text-sm font-medium text-gray-900 px-6 py-4"
+                                            >
                                                 Activity
                                             </th>
                                             <th
                                                 scope="col"
                                                 className="text-sm font-medium text-gray-900 px-6 py-4"
                                             >
-                                                Coordinator
+                                                InCharge
                                             </th>
                                             <th
                                                 scope="col"
                                                 className="text-sm font-medium text-gray-900 px-6 py-4"
                                             >
-                                                Start Date
+                                                Date
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                className="text-sm font-medium text-gray-900 px-6 py-4"
+                                            >
+                                                Status
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr className="border-b bg-green-500 border-green-200">
-                                            <td className="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                                                Arrangements
-                                            </td>
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                Coordinator 1
-                                            </td>
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                12/12/2020
-                                            </td>
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {/* checkbox */}
-                                                <input type="checkbox" />
-                                            </td>
-                                        </tr>
-                                        <tr className="border-b bg-orange-500 border-red-200">
-                                            <td className="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                                                Budgetting
-                                            </td>
-                                            <td className="text-sm text-gray-500 font-light px-6 py-4 whitespace-nowrap">
-                                                Treasurer
-                                            </td>
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                12/12/2020
-                                            </td>
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {/* checkbox */}
-                                                <input type="checkbox" />
-                                            </td>
-                                        </tr>
-                                        <tr className="border-b bg-red-500 border-yellow-200">
-                                            <td className="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
-                                                Item Purchasing
-                                            </td>
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                Treasurer
-                                            </td>
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                12/12/2020
-                                            </td>
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {/* checkbox */}
-                                                <input
-                                                    type="checkbox"
-                                                    disabled
-                                                />
-                                            </td>
-                                        </tr>
+                                        {/* //loop through the activities */}
+
+                                        {singleEvent?.activities?.map(
+                                            (activity) => (
+                                                <tr
+                                                    className="border-b bg-green-500 border-green-200"
+                                                    key={activity.id}
+                                                >
+                                                    <td className="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
+                                                        {}
+                                                        <input
+                                                            type="checkbox"
+                                                            // onClick={checkRead}
+                                                            checked={
+                                                                activity.received
+                                                            }
+                                                        />
+                                                    </td>
+                                                    <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        {activity?.name}
+                                                    </td>
+                                                    <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        {activity?.user?.name}
+                                                    </td>
+                                                    <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        {activity?.start_date}
+                                                    </td>
+                                                    <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        {activity?.status}
+                                                    </td>
+                                                </tr>
+                                            )
+                                        )}
                                     </tbody>
                                 </table>
                                 <Link to="/addactivity">Add Activity</Link>
