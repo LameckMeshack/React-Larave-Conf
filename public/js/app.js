@@ -11575,8 +11575,8 @@ function AddEvent() {
       formData.append("poster", eventDetails.poster); // dispatch(createEvent(eventDetails));
 
       dispatch((0,_Store_Actions_EventAction__WEBPACK_IMPORTED_MODULE_7__.createEvent)(formData)); //  navigate()
-      // console.log(eventDetails);
 
+      console.log(eventDetails);
       resetForm();
       navigate("/events/" + eventCreated.id);
     } // console.log("eventCreated", eventCreated);
@@ -11629,6 +11629,7 @@ function AddEvent() {
     dispatch((0,_Store_Actions_CategoryActions__WEBPACK_IMPORTED_MODULE_5__.getCategories)());
   }, [eventInfo]); // console.log(departments.departments);
 
+  console.log(user);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
     className: "min-w-screen min-h-screen bg-green-700 flex items-center justify-center px-5 py-5",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
@@ -12142,14 +12143,16 @@ function EventCard(_ref) {
       created_by = _ref.created_by,
       category = _ref.category,
       desc = _ref.desc,
-      start_date = _ref.start_date;
+      start_date = _ref.start_date,
+      poster = _ref.poster;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: "card-link",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("article", {
       className: "event-card",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-        className: "event-image",
-        src: "https://picsum.photos/300/200"
+        className: "event-image" // src="https://picsum.photos/300/200"
+        ,
+        src: "../../uploads/posters/".concat(poster)
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "article-details",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
@@ -12238,7 +12241,7 @@ function EventContainer() {
   }, []); // console.log(events);
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    className: " events-container",
+    className: " events-container min-h-fit",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
       children: "Events"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
@@ -12248,13 +12251,14 @@ function EventContainer() {
         children: "Create Event"
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-      className: "event-cards",
+      className: "event-cards ",
       children: [events && events.length > 0 ? events.map(function (event) {
         var _event$created_by;
 
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
           to: "/events/".concat(event.id),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_EventCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            poster: event.poster,
             desc: event.description,
             name: event.name,
             id: event.id,
@@ -12418,7 +12422,7 @@ function MyApp() {
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Nav__WEBPACK_IMPORTED_MODULE_8__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-      className: "h-screen",
+      className: "min-h-screen",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Routes, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
           path: "/",
