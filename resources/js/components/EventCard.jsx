@@ -10,8 +10,8 @@ function EventCard({
     poster,
 }) {
     return (
-        <div className="card-link">
-            <article className="event-card">
+        <div className="card-link bg-green-700 ">
+            <article className="event-card bg-green-100 ">
                 <img
                     className="event-image"
                     // src="https://picsum.photos/300/200"
