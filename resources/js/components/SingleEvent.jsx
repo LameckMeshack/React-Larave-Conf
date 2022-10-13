@@ -23,7 +23,6 @@ function SingleEvent() {
                     <div className="event-image">
                         <img
                             className="event-image"
-                            // src="https://picsum.photos/300/200"
                             src={`../../uploads/posters/${singleEvent?.poster}`}
                         />
                     </div>

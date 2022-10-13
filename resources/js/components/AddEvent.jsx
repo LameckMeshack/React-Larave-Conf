@@ -34,7 +34,7 @@ function AddEvent() {
         start_date: "",
         lead_date: "",
         department_id: "",
-        activity_id: "",
+        // activity_id: "",
         category_id: "",
         activity_id: "",
         poster: null,
@@ -52,7 +52,7 @@ function AddEvent() {
             eventDetails.lead_date === "" ||
             eventDetails.department === "" ||
             eventDetails.category === "" ||
-            eventDetails.activities === "" ||
+            // eventDetails.activities === "" ||
             eventDetails.poster === null
         ) {
             alert("Please fill all the fields");
@@ -66,7 +66,7 @@ function AddEvent() {
             formData.append("lead_date", eventDetails.lead_date);
             formData.append("department_id", eventDetails.department_id);
             formData.append("category_id", eventDetails.category_id);
-            formData.append("activity_id", eventDetails.activity_id);
+            // formData.append("activity_id", eventDetails.activity_id);
             formData.append("frequency_id", eventDetails.frequency_id);
             formData.append("poster", eventDetails.poster);
 
@@ -101,7 +101,7 @@ function AddEvent() {
             description: "",
             start_date: "",
             lead_date: "",
-            activities: "",
+            // activities: "",
             department: "",
             category: "",
             poster: "",
@@ -310,7 +310,7 @@ function AddEvent() {
                                     </div>
                                 </div>
 
-                                <div className="w-1/2 px-3 mb-5">
+                                {/* <div className="w-1/2 px-3 mb-5">
                                     <label
                                         htmlFor=""
                                         className="text-xs font-semibold px-1"
@@ -342,7 +342,7 @@ function AddEvent() {
                                                 ))}
                                         </select>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="w-1/2 px-3 mb-5">
                                     <label
                                         htmlFor="Email"
