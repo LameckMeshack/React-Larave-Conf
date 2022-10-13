@@ -23,27 +23,31 @@ function SingleEvent() {
                     <div className="event-image">
                         <img
                             className="event-image"
-                            src="https://picsum.photos/300/200"
+                            // src="https://picsum.photos/300/200"
+                            src={`../../uploads/posters/${singleEvent?.poster}`}
                         />
                     </div>
                 </div>
                 <div className="event-top-right">
                     <h2>{singleEvent?.name}</h2>
                     <br />
-                    <h3>
-                        The Grand Event is a great event that will be held in
-                        the Chancery , puzzles
-                    </h3>
+                    <p>{singleEvent?.description} </p>
                     <p>
-                        Start Date: <small>{singleEvent?.start_date} </small>
+                        <small> Start Date: {singleEvent?.start_date} </small>
                     </p>
 
                     <p>
-                        Lead Date: <small> {singleEvent?.lead_date}</small>
+                        <small> Lead Date: {singleEvent?.lead_date}</small>
                     </p>
-                    <p>{singleEvent?.department?.name}</p>
-                    <p>{singleEvent?.category?.name}</p>
-                    <p>Location: {singleEvent?.venue}</p>
+                    <p>
+                        <small> {singleEvent?.department?.name}</small>{" "}
+                    </p>
+                    <p>
+                        <small> {singleEvent?.category?.name}</small>{" "}
+                    </p>
+                    <p>
+                        <small> Location: {singleEvent?.venue}</small>{" "}
+                    </p>
 
                     <p>Event Organizer: Rhino</p>
                     <p>Status: Ontime</p>
