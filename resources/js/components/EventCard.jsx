@@ -1,12 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-function EventCard({ id, name, created_by, category, desc, start_date }) {
+function EventCard({
+    id,
+    name,
+    created_by,
+    category,
+    desc,
+    start_date,
+    poster,
+}) {
     return (
         <div className="card-link">
             <article className="event-card">
                 <img
                     className="event-image"
-                    src="https://picsum.photos/300/200"
+                    // src="https://picsum.photos/300/200"
+                    src={`../../uploads/posters/${poster}`}
                 />
                 <div className="article-details">
                     <h4 className="event-category">{category}</h4>
