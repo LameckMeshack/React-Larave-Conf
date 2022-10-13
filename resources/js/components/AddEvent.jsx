@@ -74,10 +74,7 @@ function AddEvent() {
             dispatch(createEvent(formData));
             //  navigate()
 
-            // console.log(eventDetails);
             resetForm();
-
-            navigate("/events/" + eventCreated.id);
         }
         // console.log("eventCreated", eventCreated);
     };
@@ -109,6 +106,12 @@ function AddEvent() {
             category: "",
             poster: "",
         });
+
+    useEffect(() => {
+        if (eventCreated) {
+            navigate(`/events/${eventCreated.id}`);
+        }
+    }, [eventCreated]);
 
     useLayoutEffect(() => {
         dispatch(getRoles());
