@@ -38,7 +38,7 @@ class EventController extends Controller
             'category_id' => 'required|integer',
             'frequency_id' => 'required|integer',
             'created_by' => 'required|integer',
-            'activity_id' => 'required|integer',
+            // 'activity_id' => 'required|integer',
             'poster' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -65,7 +65,7 @@ class EventController extends Controller
             'category_id' => $request->category_id,
             'frequency_id' => $request->frequency_id,
             'created_by' => $request->created_by,
-            'activity_id' => $request->activity_id,
+            // 'activity_id' => $request->activity_id,
             'poster' => $name,
 
         ]);
@@ -78,7 +78,7 @@ class EventController extends Controller
 
     public function show($id)
     {
-        $event = Event::with('frequency','category','department','users')->find($id);
+        $event = Event::with('frequency','category','department','users','activities.user')->find($id);
         if(is_null($event)) {
             return response()->json(['message' => 'Event not found'], 404);
         }
