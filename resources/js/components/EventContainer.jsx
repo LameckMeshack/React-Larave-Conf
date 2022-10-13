@@ -35,7 +35,7 @@ function EventContainer() {
 
     // console.log(events);
     return (
-        <div className=" events-container">
+        <div className=" events-container min-h-fit">
             <h2>Events</h2>
             <Link to="/addevent">
                 <button className="btn bg-blue-700 btn-primary create-event-btn">
@@ -43,11 +43,12 @@ function EventContainer() {
                 </button>
             </Link>
 
-            <div className="event-cards">
+            <div className="event-cards ">
                 {events && events.length > 0 ? (
                     events.map((event) => (
                         <Link key={event.id} to={`/events/${event.id}`}>
                             <EventCard
+                                poster={event.poster}
                                 desc={event.description}
                                 name={event.name}
                                 id={event.id}
