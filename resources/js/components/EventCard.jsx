@@ -20,7 +20,7 @@ function EventCard({
                 <div className="article-details">
                     <h4 className="event-category">{category}</h4>
                     <h3 className="event-title">{name}</h3>
-                    <p className="event-description">{desc} </p>
+                    <p className="event-description">{desc.substr(0, 100)}</p>
                     <p className="event-author">Organizer: {created_by}</p>
                     {/* date */}
                     <small>{start_date}</small>
