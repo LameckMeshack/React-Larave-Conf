@@ -149,7 +149,12 @@ function SingleEvent() {
                                         )}
                                     </tbody>
                                 </table>
-                                <Link to="/addactivity">Add Activity</Link>
+                                <Link
+                                    to="/addactivity"
+                                    className="bg-blue-300 p-2 rounded"
+                                >
+                                    Add Activity
+                                </Link>
                             </div>
                         </div>
                     </div>
