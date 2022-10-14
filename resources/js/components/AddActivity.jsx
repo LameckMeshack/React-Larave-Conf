@@ -12,12 +12,14 @@ function AddActivity() {
     const dispatch = useDispatch();
     //get event id from local storage
     const id = localStorage.getItem("event_id");
+    //generate random id between 1 and 3
+    const random = Math.floor(Math.random() * 3) + 1;
 
     const [activityData, setActivityData] = useState({
         name: "",
         incharge: "",
         start_date: "",
-        status_id: "1",
+        status_id: random,
         received: false,
         event_id: id,
     });
@@ -32,6 +34,15 @@ function AddActivity() {
         e.preventDefault();
         // console.log(activityData);
         dispatch(createActivity(activityData));
+        // reset activity
+        setActivityData({
+            name: "",
+            incharge: "",
+            start_date: "",
+            status_id: "1",
+            received: false,
+            event_id: id,
+        });
     };
 
     const create = useSelector((state) => state.activityCreate);
@@ -43,8 +54,8 @@ function AddActivity() {
     return (
         <>
             {/* back to roles */}
-            <Link className="m-16 p-4 rounded bg-blue-600" to="/events">
-                <button onClick={() => navigate("/events/1")}>Go Back</button>
+            <Link className="m-16 p-4 rounded bg-blue-600">
+                <button onClick={() => navigate(-1)}>Go Back</button>
             </Link>
             <div className="flex py-8 bg-green-700">
                 <div className="w-full max-w-xs m-auto bg-green-100 rounded p-5">
@@ -80,7 +91,7 @@ function AddActivity() {
                                     className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                                     placeholder="Liaison"
                                     required
-                                    // value={loginData.email}
+                                    value={activityData.name}
                                     onChange={(e) =>
                                         setActivityData({
                                             ...activityData,
@@ -101,6 +112,7 @@ function AddActivity() {
                             <div className="relative">
                                 <select
                                     className="block appearance-none w-full bg-white border border-gray-400 hover:border-indigo-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                    value={activityData.incharge}
                                     onChange={(e) =>
                                         setActivityData({
                                             ...activityData,
