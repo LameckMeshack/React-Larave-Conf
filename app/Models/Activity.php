@@ -14,7 +14,7 @@ class Activity extends Model
         'incharge',
         'start_date',
         'received',
-        'status',
+        'status_id',
         'event_id',
     ];
 
@@ -32,6 +32,12 @@ class Activity extends Model
     public function user()
     {
         return $this->belongsTo(User::class,'incharge','id');
+    }
+
+    //  activity has one status
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
 
     
