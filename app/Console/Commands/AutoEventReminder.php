@@ -43,7 +43,9 @@ class AutoEventReminder extends Command
     public function handle()
     {
       
-        $events = Event::where('lead_date', '=', today()->format('Y-m-d'))->with('frequency')->get();
+        $events = Event::where('lead_date', '=', today()->format('Y-m-d'))
+                ->with('frequency','activities.user')
+                ->get();
         // dd($events);
         foreach($events as $event){
             $users = $event->users;

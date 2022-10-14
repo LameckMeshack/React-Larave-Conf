@@ -13,7 +13,7 @@ class ActivityController extends Controller
     public function index()
     {
     //    get all activities that matches event id
-        $activities = Activity::all();
+        $activities = Activity::with('status')->get();
         return response()->json( $activities, 200);
     }
 
@@ -55,6 +55,4 @@ class ActivityController extends Controller
         ], 201);
     }
     
-
-    //
 }
