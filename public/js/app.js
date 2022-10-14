@@ -11191,13 +11191,15 @@ function AddActivity() {
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useNavigate)();
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)(); //get event id from local storage
 
-  var id = localStorage.getItem("event_id");
+  var id = localStorage.getItem("event_id"); //generate random id between 1 and 3
+
+  var random = Math.floor(Math.random() * 3) + 1;
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
     name: "",
     incharge: "",
     start_date: "",
-    status_id: "1",
+    status_id: random,
     received: false,
     event_id: id
   }),
@@ -11231,7 +11233,16 @@ function AddActivity() {
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault(); // console.log(activityData);
 
-    dispatch((0,_Store_Actions_ActivityAction__WEBPACK_IMPORTED_MODULE_3__.createActivity)(activityData));
+    dispatch((0,_Store_Actions_ActivityAction__WEBPACK_IMPORTED_MODULE_3__.createActivity)(activityData)); // reset activity
+
+    setActivityData({
+      name: "",
+      incharge: "",
+      start_date: "",
+      status_id: "1",
+      received: false,
+      event_id: id
+    });
   };
 
   var create = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
@@ -11248,10 +11259,9 @@ function AddActivity() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
       className: "m-16 p-4 rounded bg-blue-600",
-      to: "/events",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
         onClick: function onClick() {
-          return navigate("/events/1");
+          return navigate(-1);
         },
         children: "Go Back"
       })
@@ -11288,8 +11298,8 @@ function AddActivity() {
                 type: "text",
                 className: "w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500",
                 placeholder: "Liaison",
-                required: true // value={loginData.email}
-                ,
+                required: true,
+                value: activityData.name,
                 onChange: function onChange(e) {
                   return setActivityData(_objectSpread(_objectSpread({}, activityData), {}, {
                     name: e.target.value
@@ -11307,6 +11317,7 @@ function AddActivity() {
               className: "relative",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", {
                 className: "block appearance-none w-full bg-white border border-gray-400 hover:border-indigo-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline",
+                value: activityData.incharge,
                 onChange: function onChange(e) {
                   return setActivityData(_objectSpread(_objectSpread({}, activityData), {}, {
                     incharge: e.target.value
@@ -12993,17 +13004,17 @@ function SingleEvent() {
         })]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-      className: "event-bottom",
+      className: "event-bottom max-w-full ",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "flex flex-col",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "overflow-x-auto sm:-mx-6 lg:-mx-8",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-            className: "py-2 inline-block min-w-full sm:px-6 lg:px-8",
+            className: "py-2 inline-block max-w-full sm:px-6 lg:px-8",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "overflow-hidden",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("table", {
-                className: "min-w-full text-center",
+                className: "max-w-full text-center",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("thead", {
                   className: "border-b",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
@@ -13031,14 +13042,18 @@ function SingleEvent() {
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", {
                   children: singleEvent === null || singleEvent === void 0 ? void 0 : (_singleEvent$activiti = singleEvent.activities) === null || _singleEvent$activiti === void 0 ? void 0 : _singleEvent$activiti.map(function (activity) {
-                    var _activity$user;
+                    var _activity$user, _activity$status, _activity$status2, _activity$status3;
 
                     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
-                      className: "border-b bg-green-500 border-green-200",
+                      className: "border-b border-green-200  hover:bg-green-50",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                         className: "text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-                          type: "checkbox" // onClick={checkRead}
+                          type: "checkbox",
+                          readOnly: true // onClick={checkRead}
+                          // {activity?.incharge? === userInfo?.user?.id
+                          //     ? ''
+                          //     : 'readOnly'}
                           ,
                           checked: activity.received
                         })
@@ -13052,8 +13067,8 @@ function SingleEvent() {
                         className: "text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap",
                         children: activity === null || activity === void 0 ? void 0 : activity.start_date
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-                        className: "text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap",
-                        children: activity === null || activity === void 0 ? void 0 : activity.status
+                        className: "text-sm text-gray-900 font-extrabold\t px-6 py-4 whitespace-nowrap   ".concat((activity === null || activity === void 0 ? void 0 : (_activity$status = activity.status) === null || _activity$status === void 0 ? void 0 : _activity$status.id) === 1 ? "text-green-800" : (activity === null || activity === void 0 ? void 0 : (_activity$status2 = activity.status) === null || _activity$status2 === void 0 ? void 0 : _activity$status2.id) === 2 ? "text-orange-200" : "text-red-800"),
+                        children: activity === null || activity === void 0 ? void 0 : (_activity$status3 = activity.status) === null || _activity$status3 === void 0 ? void 0 : _activity$status3.name
                       })]
                     }, activity.id);
                   })
