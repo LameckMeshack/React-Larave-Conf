@@ -20,6 +20,7 @@ class EventReminder extends Mailable
      * @return void
      */
     public function __construct($event, $user)
+   
     {
         $this->event = $event;
         $this->user = $user;

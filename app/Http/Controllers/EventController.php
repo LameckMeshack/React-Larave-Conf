@@ -78,7 +78,7 @@ class EventController extends Controller
 
     public function show($id)
     {
-        $event = Event::with('frequency','category','department','users','activities.user')->find($id);
+        $event = Event::with('frequency','category','department','users','activities.user', 'activities.status')->find($id);
         if(is_null($event)) {
             return response()->json(['message' => 'Event not found'], 404);
         }
