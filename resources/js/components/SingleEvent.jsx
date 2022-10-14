@@ -58,12 +58,12 @@ function SingleEvent() {
                     <p>Status: Ontime</p>
                 </div>
             </div>
-            <div className="event-bottom">
+            <div className="event-bottom max-w-full ">
                 <div className="flex flex-col">
                     <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                        <div className="py-2 inline-block max-w-full sm:px-6 lg:px-8">
                             <div className="overflow-hidden">
-                                <table className="min-w-full text-center">
+                                <table className="max-w-full text-center">
                                     <thead className="border-b">
                                         <tr>
                                             <th
@@ -104,14 +104,18 @@ function SingleEvent() {
                                         {singleEvent?.activities?.map(
                                             (activity) => (
                                                 <tr
-                                                    className="border-b bg-green-500 border-green-200"
+                                                    className="border-b border-green-200  hover:bg-green-50"
                                                     key={activity.id}
                                                 >
                                                     <td className="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
                                                         {}
                                                         <input
                                                             type="checkbox"
+                                                            readOnly
                                                             // onClick={checkRead}
+                                                            // {activity?.incharge? === userInfo?.user?.id
+                                                            //     ? ''
+                                                            //     : 'readOnly'}
                                                             checked={
                                                                 activity.received
                                                             }
@@ -126,8 +130,19 @@ function SingleEvent() {
                                                     <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                         {activity?.start_date}
                                                     </td>
-                                                    <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                        {activity?.status}
+                                                    <td
+                                                        className={`text-sm text-gray-900 font-extrabold	 px-6 py-4 whitespace-nowrap   ${
+                                                            activity?.status
+                                                                ?.id === 1
+                                                                ? "text-green-800"
+                                                                : activity
+                                                                      ?.status
+                                                                      ?.id === 2
+                                                                ? "text-orange-200"
+                                                                : "text-red-800"
+                                                        }`}
+                                                    >
+                                                        {activity?.status?.name}
                                                     </td>
                                                 </tr>
                                             )
