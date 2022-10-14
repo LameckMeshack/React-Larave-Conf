@@ -12179,9 +12179,9 @@ function EventCard(_ref) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
           className: "event-title",
           children: name
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
           className: "event-description",
-          children: [desc, " "]
+          children: desc.substr(0, 100)
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
           className: "event-author",
           children: ["Organizer: ", created_by]
@@ -12819,6 +12819,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Store_Actions_DepartmentAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Store/Actions/DepartmentAction */ "./resources/js/Store/Actions/DepartmentAction.js");
 /* harmony import */ var _Store_Actions_RoleActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Store/Actions/RoleActions */ "./resources/js/Store/Actions/RoleActions.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -12828,6 +12840,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function RolesDepartments() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      showDept = _useState2[0],
+      setShowDept = _useState2[1];
+
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   var roles = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return state.roles;
@@ -12840,7 +12857,12 @@ function RolesDepartments() {
       roleList = roles.roles;
   var loadingDepartments = departments.loading,
       errorDepartments = departments.error,
-      departmentList = departments.departments;
+      departmentList = departments.departments; //TOGGLE SHOW DEPARTMENTS
+
+  var toggleShowDepartments = function toggleShowDepartments() {
+    setShowDept(!showDept);
+  };
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     dispatch((0,_Store_Actions_RoleActions__WEBPACK_IMPORTED_MODULE_3__.getRoles)());
     dispatch((0,_Store_Actions_DepartmentAction__WEBPACK_IMPORTED_MODULE_2__.getDepartments)());
@@ -12852,8 +12874,12 @@ function RolesDepartments() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
         className: "text-3xl",
         children: "Roles"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("ul", {
-        className: "bg-white rounded-lg border border-gray-200 w-96 text-gray-900",
+      }), showDept && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+        className: "bg-blue-500 p-2 rounded",
+        onClick: toggleShowDepartments,
+        children: "See Roles"
+      }), !showDept && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("ul", {
+        className: "bg-white rounded-lg border bg-green-200 border-gray-200 w-96 text-gray-900",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
           className: "px-6 py-2 border-b border-gray-200 w-full rounded-t-lg text-2xl",
           children: "Available Roles"
@@ -12873,13 +12899,19 @@ function RolesDepartments() {
           })
         })]
       })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "verticalLine"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       className: "flex flex-col justify-center",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
         className: "text-3xl",
         children: "Departments"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("ul", {
-        className: "bg-white rounded-lg border border-gray-200 w-96 text-gray-900",
+      }), !showDept && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+        className: "bg-blue-500 p-2 rounded",
+        onClick: toggleShowDepartments,
+        children: "See Departments"
+      }), showDept && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("ul", {
+        className: "bg-white bg-green-200 rounded-lg border border-gray-200 w-96 text-gray-900",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
           className: "px-6 py-2 border-b border-gray-200 w-full rounded-t-lg text-2xl",
           children: "Available Department"
@@ -13075,6 +13107,7 @@ function SingleEvent() {
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
                 to: "/addactivity",
+                className: "bg-blue-300 p-2 rounded",
                 children: "Add Activity"
               })]
             })
@@ -18481,7 +18514,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".nav {\n    width: 100%;\n    margin: 0 auto;\n    background-color: rgb(220 252 231);\n}\n.nav__container {\n    width: 100%;\n    display: flex;\n    justify-content: center;\n    -moz-column-gap: 27px;\n         column-gap: 27px;\n    color: grey;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n}\n.nav__container li {\n    padding: 27px 0;\n}\n.nav__container a {\n    text-decoration: none;\n    color: gray;\n    font-size: 18px;\n}\n.nav__container a.active {\n    color: green;\n}\n.sub__menus {\n    position: absolute;\n    display: none;\n    background: gray;\n    border: 1px solid lavender;\n    width: 227px;\n    left: 0;\n    padding: 17px 17px 17px 17px;\n    z-index: 1000;\n    box-shadow: 0 10px 12px rgb(22 33 39 / 25%);\n    list-style: none;\n    margin-top: 10px;\n}\n.nav__container .sub__menus li a.active {\n    color: #ab9901;\n}\n.sub__menus li {\n    padding: 10px 0;\n    text-align: left;\n}\n.sub__menus li a {\n    color: black;\n}\n.sub__menus__arrows {\n    position: relative;\n}\n.sub__menus__arrows svg {\n    vertical-align: middle;\n}\n@media (min-width: 992px) {\n    .sub__menus__arrows:hover .sub__menus {\n        display: block;\n    }\n}\n@media (max-width: 991px) {\n    .nav__container {\n        display: none;\n    }\n    .menubar__button:hover {\n        background-color: green;\n    }\n    .menubar__button {\n        display: inline-block !important;\n        background-color: green;\n        color: #000;\n        padding: 6px 7px;\n        border-radius: 5px;\n        margin: 10px auto;\n        cursor: pointer;\n        position: relative;\n        z-index: 10037;\n    }\n    .nav__container li {\n        padding: 0px 0;\n    }\n    .menubar__button svg {\n        font-size: 27px;\n    }\n    .responsive__nav__show {\n        display: block !important;\n        position: absolute;\n        left: 0;\n        z-index: 10007;\n        background-color: #000000;\n        border-bottom: 3px solid green;\n        right: 0;\n        padding-bottom: 17px;\n        padding-top: 27px;\n    }\n    .nav__container a {\n        font-size: 22px;\n        display: flex;\n        align-items: center;\n        flex-wrap: wrap;\n        justify-content: center;\n        flex-direction: row;\n        margin-bottom: 17px;\n    }\n    .main-nav .sub__menus__arrows:hover .sub__menus {\n        margin: 0 auto;\n        left: 0;\n        right: 0;\n    }\n    .sub__menus__Active {\n        display: block !important;\n        margin: 0 auto;\n        left: 0;\n        right: 0;\n    }\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".nav {\n    width: 100%;\n    margin: 0 auto;\n    background-color: rgb(220 252 231);\n}\n.nav__container {\n    width: 100%;\n    display: flex;\n    justify-content: center;\n    -moz-column-gap: 27px;\n         column-gap: 27px;\n    color: grey;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n}\n.nav__container li {\n    padding: 27px 0;\n}\n.nav__container a {\n    text-decoration: none;\n    color: gray;\n    font-size: 18px;\n}\n.nav__container a.active {\n    color: green;\n}\n.sub__menus {\n    position: absolute;\n    display: none;\n    background: gray;\n    border: 1px solid lavender;\n    width: 227px;\n    left: 0;\n    padding: 17px 17px 17px 17px;\n    z-index: 1000;\n    box-shadow: 0 10px 12px rgb(22 33 39 / 25%);\n    list-style: none;\n    margin-top: 10px;\n}\n.nav__container .sub__menus li a.active {\n    color: #ab9901;\n}\n.sub__menus li {\n    padding: 10px 0;\n    text-align: left;\n}\n.sub__menus li a {\n    color: black;\n}\n.sub__menus__arrows {\n    position: relative;\n}\n.sub__menus__arrows svg {\n    vertical-align: middle;\n}\n@media (min-width: 992px) {\n    .sub__menus__arrows:hover .sub__menus {\n        display: block;\n    }\n}\n@media (max-width: 991px) {\n    .nav__container {\n        display: none;\n    }\n    .menubar__button:hover {\n        background-color: green;\n    }\n    .menubar__button {\n        display: inline-block !important;\n        background-color: green;\n        color: #000;\n        padding: 6px 7px;\n        border-radius: 5px;\n        margin: 10px auto;\n        cursor: pointer;\n        position: relative;\n        z-index: 10037;\n    }\n    .nav__container li {\n        padding: 0px 0;\n    }\n    .menubar__button svg {\n        font-size: 27px;\n    }\n    .responsive__nav__show {\n        display: block !important;\n        position: absolute;\n        left: 0;\n        z-index: 10007;\n        /* background-color: #000000; */\n        background-color: rgb(170, 219, 170);\n        border-bottom: 3px solid green;\n        right: 0;\n        padding-bottom: 17px;\n        padding-top: 27px;\n    }\n    .nav__container a {\n        font-size: 22px;\n        display: flex;\n        align-items: center;\n        flex-wrap: wrap;\n        justify-content: center;\n        flex-direction: row;\n        margin-bottom: 17px;\n    }\n    .main-nav .sub__menus__arrows:hover .sub__menus {\n        margin: 0 auto;\n        left: 0;\n        right: 0;\n    }\n    .sub__menus__Active {\n        display: block !important;\n        margin: 0 auto;\n        left: 0;\n        right: 0;\n    }\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
